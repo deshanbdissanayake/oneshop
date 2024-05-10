@@ -6,11 +6,11 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-  const [navType, setNavType] = useState('drawer');
-  const [themeColor, setThemeColor] = useState('dark');
+  const [navType, setNavType] = useState('bottom-tab');
+  const [userType, setUserType] = useState(null); //customer/vendor
 
   return (
-    <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn, isLoading, setIsLoading, navType, setNavType, themeColor, setThemeColor }}>
+    <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn, isLoading, setIsLoading, navType, setNavType, userType, setUserType }}>
       {children}
     </AppContext.Provider>
   );

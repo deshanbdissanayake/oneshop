@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
         overflow: 'scroll',
     },
     inputTextStyles: {
+        fontFamily: 'ms-regular',
         fontSize: 14,
         color: colors.textColorSec,
         marginLeft: 10,

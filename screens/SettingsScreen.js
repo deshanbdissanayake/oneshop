@@ -32,8 +32,7 @@ const SettingsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Header text={'Settings'} handleGoBack={handleGoBack} /> 
-
+      <Header text={'Settings'} /> 
       <View style={styles.tableStyles}>
         <RowItem 
           func={handleProfileClick}

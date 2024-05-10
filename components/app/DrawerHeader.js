@@ -7,7 +7,7 @@ import { DrawerActions } from '@react-navigation/native';
 import { colors } from '../../assets/colors/colors';
 import MiniButton from '../general/MiniButton';
 
-const DrawerHeader = ({text = null}) => {
+const DrawerHeader = ({text = null, showNotifications = false}) => {
   const navigation = useNavigation();
 
   const openDrawer = () => {
@@ -37,10 +37,12 @@ const DrawerHeader = ({text = null}) => {
         </View>
         <View style={styles.rightContainer}>
           {/* User icon */}
-          <MiniButton
-            content={<Ionicons name="notifications" size={24} color={colors.textColorSec} />}
-            func={handleNotificationClick}
-          />
+          {showNotifications && (
+            <MiniButton
+              content={<Ionicons name="notifications" size={24} color={colors.textColorSec} />}
+              func={handleNotificationClick}
+            />
+          )}
         </View>
       </View>
     </View>

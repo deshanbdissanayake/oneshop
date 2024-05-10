@@ -9,7 +9,6 @@ import { AppProvider, useAppContext } from './context/AppContext';
 import { colors } from './assets/colors/colors';
 
 import SplashScreen from './screens/SplashScreen';
-import HomeNav from './navigation/HomeNav';
 import LoginNav from './navigation/LoginNav';
 import BottomNav from './navigation/BottomNav';
 import DrawerNav from './navigation/DrawerNav';
