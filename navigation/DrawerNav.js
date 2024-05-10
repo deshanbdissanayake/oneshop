@@ -20,6 +20,7 @@ import HomeNav from './HomeNav';
 import { useAppContext } from '../context/AppContext';
 import { logOut } from '../assets/data/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SettingsNav from './SettingsNav';
 
 const Drawer = createDrawerNavigator();
 
@@ -120,6 +121,22 @@ const DraverNav = () => {
           drawerIcon: ({ focused, color, size }) => (
             <Ionicons
               name={focused ? 'home' : 'home-outline'}
+              size={size}
+              color={color}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Drawer.Screen
+        name="Settings"
+        component={SettingsNav}
+        options={{
+          drawerLabel: 'Settings',
+          drawerLabelStyle: { fontFamily: 'ms-regular' },
+          drawerIcon: ({ focused, color, size }) => (
+            <Ionicons
+              name={focused ? 'cog' : 'cog-outline'}
               size={size}
               color={color}
             />

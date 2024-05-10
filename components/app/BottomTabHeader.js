@@ -7,7 +7,7 @@ import { DrawerActions } from '@react-navigation/native';
 import { colors } from '../../assets/colors/colors';
 import MiniButton from '../general/MiniButton';
 
-const DrawerHeader = ({text = null}) => {
+const BottomTabHeader = ({text = null}) => {
   const navigation = useNavigation();
 
   const openDrawer = () => {
@@ -24,12 +24,6 @@ const DrawerHeader = ({text = null}) => {
       <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
       <View style={styles.headerContainer}>
         <View style={styles.leftContainer}>
-          {/* Hamburger menu */}
-          <TouchableOpacity onPress={openDrawer}>
-            <Ionicons name="menu" size={24} color={colors.textColorSec} />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.centerContainer}>
           {/* Logo */}
           {/*<Image source={require('../../assets/images/app/logo.png')} style={styles.logo} />*/}
           {/* Name */}
@@ -60,19 +54,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-start',
   },
-  centerContainer: {
-    flex: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
   logo: {
     width: 30,
     height: 30,
     marginRight: 8,
   },
   name: {
-    fontSize: 18,
+    fontSize: 24,
     color: colors.textColorSec,
     fontFamily: 'ms-bold',
     textAlign: 'center',
@@ -83,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DrawerHeader;
+export default BottomTabHeader;

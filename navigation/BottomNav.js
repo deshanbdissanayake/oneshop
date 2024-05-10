@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { FontAwesome5, MaterialIcons, AntDesign } from '@expo/vector-icons';
+import { FontAwesome5, Entypo } from '@expo/vector-icons';
 import { colors } from '../assets/colors/colors';
 import { TabBarProvider, useTabBarVisibility } from '../context/TabBarContext';
 import HomeNav from './HomeNav';
@@ -37,7 +37,7 @@ function MyTabBar({ state, descriptors, navigation }) {
         let icon;
 
         if (route.name === 'Home') {
-            icon = <MaterialIcons name="leaderboard" size={24} />;
+            icon = <Entypo name="home" size={24} />;
         } else if (route.name === 'Settings') {
             icon = <FontAwesome5 name="cog" size={24} />;
         }

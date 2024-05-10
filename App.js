@@ -53,7 +53,7 @@ const App = () => {
 }
 
 const AppContent = () => {
-  const { isLoggedIn } = useAppContext();
+  const { isLoggedIn, navType, themeColor } = useAppContext();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -64,8 +64,11 @@ const AppContent = () => {
             <Stack.Screen name="LoginNav" component={LoginNav} options={{headerShown: false}} />
           ) : (
             <>
-              {/* <Stack.Screen name="BottomNav" component={BottomNav} options={{headerShown: false}} /> */}
-              <Stack.Screen name="DrawerNav" component={DrawerNav} options={{headerShown: false}} />  
+              {navType == 'drawer' ? (
+                <Stack.Screen name="DrawerNav" component={DrawerNav} options={{headerShown: false}} />
+              ) : (
+                <Stack.Screen name="BottomNav" component={BottomNav} options={{headerShown: false}} />
+              )}
             </>
           )}
         </Stack.Navigator>
