@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import DrawerHeader from '../components/app/DrawerHeader'
-import Header from '../components/general/Header'
-import { colors } from '../assets/colors/colors'
-import BottomTabHeader from '../components/app/BottomTabHeader'
-import { useAppContext } from '../context/AppContext'
+import DrawerHeader from '../../components/app/DrawerHeader'
+import Header from '../../components/general/Header'
+import { colors } from '../../assets/colors/colors'
+import BottomTabHeader from '../../components/app/BottomTabHeader'
+import { useAppContext } from '../../context/AppContext'
 
 const HomeScreen = () => {
   const { navType } = useAppContext();

@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Header from '../components/general/Header'
-import { colors } from '../assets/colors/colors'
-import MiniButton from '../components/general/MiniButton'
+import Header from '../../components/general/Header'
+import { colors } from '../../assets/colors/colors'
+import MiniButton from '../../components/general/MiniButton'
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
 

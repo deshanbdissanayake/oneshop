@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { colors } from '../assets/colors/colors'
-import Header from '../components/general/Header'
+import { colors } from '../../assets/colors/colors'
+import Header from '../../components/general/Header'
 import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 

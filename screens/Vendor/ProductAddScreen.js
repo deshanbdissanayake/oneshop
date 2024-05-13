@@ -1,11 +1,11 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import { colors } from '../assets/colors/colors'
-import Header from '../components/general/Header'
+import { colors } from '../../assets/colors/colors'
+import Header from '../../components/general/Header'
 import { useNavigation } from '@react-navigation/native'
-import Input from '../components/general/Input'
-import Button from '../components/general/Button'
-import MultiSelect from '../components/general/MultiSelect'
+import Input from '../../components/general/Input'
+import Button from '../../components/general/Button'
+import MultiSelect from '../../components/general/MultiSelect'
 
 const ProductAddScreen = ({ pro_id = null }) => {
   const navigation = useNavigation();

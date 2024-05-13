@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Header from '../components/general/Header'
+import Header from '../../components/general/Header'
 import { useNavigation } from '@react-navigation/native'
-import { colors } from '../assets/colors/colors'
+import { colors } from '../../assets/colors/colors'
 
 const MyProfileScreen = () => {
     const navigation = useNavigation();
