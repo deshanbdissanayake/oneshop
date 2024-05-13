@@ -43,5 +43,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: 'ms-semibold',
     color: colors.textColorPri,
+    width: '80%',
   },
 })
