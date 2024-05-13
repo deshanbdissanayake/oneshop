@@ -74,7 +74,7 @@ const ProductListScreen = () => {
                     />
                 ) : (
                     <ScrollView 
-                        contentContainerStyle={{flex: 1}} 
+                        contentContainerStyle={styles.contentContainer} 
                         refreshControl={
                             <RefreshControl
                                 refreshing={refreshing}
@@ -98,5 +98,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.bgColor,
         paddingVertical: 15,
         paddingHorizontal: 15,
+    },
+    contentContainer: {
+        flex: 1,
     },
 })

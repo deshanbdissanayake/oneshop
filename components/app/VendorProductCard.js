@@ -7,7 +7,7 @@ const VendorProductCard = ({ proData, handleCardPress }) => {
   return (
     <TouchableOpacity style={styles.cardWrapper} onPress={() => handleCardPress(proData)}>
       <View style={styles.cardImageWrapper}>
-        <Image style={styles.cardImageStyles} source={{uri: proData.pro_image}} />
+        <Image style={styles.cardImageStyles} source={{uri: proData.pro_images.img_1}} />
       </View>
       <View style={styles.cardTextWrapper}>
         <View style={styles.cardNameTextWrapper}>
@@ -15,9 +15,18 @@ const VendorProductCard = ({ proData, handleCardPress }) => {
           <Text style={styles.cardSkuTextStyles} numberOfLines={1} >{proData.pro_sku}</Text>
         </View>
         <View style={styles.cardBottomWrapper}>
-          <Text style={styles.cardPriceTextStyles}>{proData.price}</Text>
+          <View style={styles.cardPriceTextWrapper}>
+            {proData.discount ? (
+              <>
+                <Text style={styles.cardDiscountPriceTextStyles}>{proData.discount.dis_price}</Text>
+                <Text style={[styles.cardPriceTextStyles, {textDecorationLine: 'line-through'}]}>{proData.price}</Text>
+              </>
+            ) : (
+              <Text style={styles.cardPriceTextStyles}>{proData.price}</Text>
+            )}
+          </View>
           <View style={[styles.cardStockStatusTextWrapper, { backgroundColor : proData.stock_status == 'in' ? colors.success : colors.danger }]}>
-            <Text style={styles.cardStockStatusTextStyles}>{proData.stock_status == 'in' ? 'In' : 'Out'}</Text>
+            <Text style={styles.cardStockStatusTextStyles}>{proData.stock_status == 'in' ? 'In Stock' : 'Out of Stock'}</Text>
           </View>
         </View>
       </View>
@@ -72,8 +81,17 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
       alignItems: 'center',
     },
+    cardPriceTextWrapper: {
+      flexDirection: 'row',
+    },
+    cardDiscountPriceTextStyles: {
+      fontSize: 16,
+      fontFamily: 'ms-regular',
+      color: colors.success,
+      marginRight: 5,
+    },
     cardPriceTextStyles: {
-      fontSize: 15,
+      fontSize: 16,
       fontFamily: 'ms-regular',
       color: colors.textColorPri,
     },
@@ -85,7 +103,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 10,
     },
     cardStockStatusTextStyles: {
-      fontSize: 14,
+      fontSize: 10,
       fontFamily: 'ms-regular',
       color: colors.white,
       textAlign: 'center',
