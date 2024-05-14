@@ -5,7 +5,7 @@ import { colors } from '../../assets/colors/colors'
 import MiniButton from '../../components/general/MiniButton'
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'
-import { getMyProducts } from '../../assets/data/products'
+import { getProductsByUserId } from '../../assets/data/products'
 import LoadingScreen from '../LoadingScreen'
 import VendorProductCard from '../../components/app/VendorProductCard'
 import NoData from '../../components/general/NoData'
@@ -23,7 +23,7 @@ const ProductListScreen = () => {
 
     const getProductsFunc = async () => {
         try {
-            let res = await getMyProducts();
+            let res = await getProductsByUserId();
             getProducts(res);
         } catch (error) {
             console.error('error at ProductListScreen->getProducts: ', error)

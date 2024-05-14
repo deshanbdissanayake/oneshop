@@ -1,4 +1,4 @@
-const getMyProducts = async () => {
+const getProductsByUserId = async () => {
     //get by user id
     let user_id = 1;
     let data = [
@@ -45,4 +45,4 @@ const getMyProducts = async () => {
     return data;
 }
 
-export { getMyProducts }
+export { getProductsByUserId }
