@@ -2,13 +2,14 @@ import { FlatList, RefreshControl, ScrollView, StyleSheet, Text, View } from 're
 import React, { useCallback, useState } from 'react'
 import { colors } from '../../assets/colors/colors'
 import Header from '../../components/general/Header'
-import { useFocusEffect } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import { getOrdersByUserId } from '../../assets/data/orders'
 import LoadingScreen from '../LoadingScreen'
 import NoData from '../../components/general/NoData'
 import VendorOrderCard from '../../components/app/VendorOrderCard'
 
 const OrderListScreen = () => {
+  const navigation = useNavigation();
 
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -37,6 +38,10 @@ const OrderListScreen = () => {
     getOrders();
   }
 
+  const handleOrderClick = (ord_id) => {
+    navigation.navigate('Order Single Screen', { ord_id })
+  }
+
   if(loading){
     return <LoadingScreen/>
   }
@@ -51,7 +56,7 @@ const OrderListScreen = () => {
           <FlatList
             data={orders}
             keyExtractor={(item) => item.ord_id.toString()}
-            renderItem={({item}) => <VendorOrderCard cardData={item} />}
+            renderItem={({item}) => <VendorOrderCard cardData={item} handleOrderClick={handleOrderClick} />}
             showsVerticalScrollIndicator={false}
             refreshControl={
               <RefreshControl

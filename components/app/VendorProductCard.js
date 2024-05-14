@@ -15,15 +15,18 @@ const VendorProductCard = ({ proData, handleCardPress }) => {
           <Text style={styles.cardSkuTextStyles} numberOfLines={1} >{proData.pro_sku}</Text>
         </View>
         <View style={styles.cardBottomWrapper}>
-          <View style={styles.cardPriceTextWrapper}>
-            {proData.discount ? (
-              <>
-                <Text style={styles.cardDiscountPriceTextStyles}>{proData.discount.dis_price}</Text>
-                <Text style={[styles.cardPriceTextStyles, {textDecorationLine: 'line-through'}]}>{proData.price}</Text>
-              </>
-            ) : (
-              <Text style={styles.cardPriceTextStyles}>{proData.price}</Text>
-            )}
+          <View>
+            <Text style={styles.lkrTextStyles}>LKR</Text>
+            <View style={styles.cardPriceTextWrapper}>
+              {proData.discount ? (
+                <>
+                  <Text style={styles.cardDiscountPriceTextStyles}>{proData.discount.dis_price}</Text>
+                  <Text style={[styles.cardPriceTextStyles, {textDecorationLine: 'line-through'}]}>{proData.price}</Text>
+                </>
+              ) : (
+                <Text style={styles.cardPriceTextStyles}>{proData.price}</Text>
+              )}
+            </View>
           </View>
           <View style={[styles.cardStockStatusTextWrapper, { backgroundColor : proData.stock_status == 'in' ? colors.success : colors.danger }]}>
             <Text style={styles.cardStockStatusTextStyles}>{proData.stock_status == 'in' ? 'In Stock' : 'Out of Stock'}</Text>
@@ -39,13 +42,15 @@ export default VendorProductCard
 const styles = StyleSheet.create({
     cardWrapper: {
       backgroundColor: colors.bgColorTer,
-      paddingHorizontal: 15,
-      paddingVertical: 10,
+      paddingHorizontal: 10,
+      paddingVertical: 8,
       marginBottom: 10,
-      borderRadius: 10,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
+      borderWidth: 0.5,
+      borderRadius: 10,
+      borderColor: colors.border,
     },
     cardImageWrapper: {
       flex: 1,
@@ -80,6 +85,11 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
+    },
+    lkrTextStyles: {
+      fontSize: 12,
+      fontFamily: 'ms-light',
+      color: colors.textColorPri,
     },
     cardPriceTextWrapper: {
       flexDirection: 'row',

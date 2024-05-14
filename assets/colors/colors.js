@@ -12,7 +12,7 @@ const colorsLight = {
     gray : '#d6d6d6', 
     disabled: '#f2f2f2',
 
-    border : '#474747',
+    border : '#cccccc',
 
     primary : '#ff1463', //red
     primaryLight : '#fff0f5', //light red

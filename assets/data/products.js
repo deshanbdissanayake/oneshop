@@ -4,7 +4,7 @@ const getProductsByUserId = async () => {
     let data = [
         {
             pro_id: 1,
-            pro_name: 'Lemons',
+            pro_name: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             pro_sku: 'LM-001',
             pro_desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada est semper augue malesuada lacinia. Maecenas interdum mollis dolor, in elementum nunc tincidunt nec. Nulla pulvinar suscipit ligula id varius. Morbi sed faucibus massa. Suspendisse vitae augue feugiat, dapibus urna eu, volutpat orci. Ut sit amet volutpat nisl. Curabitur elementum lacus nec mauris faucibus faucibus. Nulla lectus purus, dictum vitae vehicula sed, efficitur non nisl. Etiam eget ullamcorper erat. Suspendisse at accumsan orci. Suspendisse purus felis, imperdiet ut diam ut, sagittis placerat lectus.',
             pro_images: {

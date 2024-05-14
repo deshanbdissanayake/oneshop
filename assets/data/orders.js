@@ -7,8 +7,8 @@ const getOrdersByUserId = async () => {
             ord_total: '2000.00',
             ord_status: 'pending', // pending/processing/delivering
             cus_name: 'Nadun Tharaka',
-            shipping_method: 'self_pickup',
-            payment_method: 'cod',
+            shipping_method: 'Self Pickup',
+            payment_method: 'COD',
             pay_status: 'pending' //pending/completed
         },
         {
@@ -18,8 +18,8 @@ const getOrdersByUserId = async () => {
             ord_total: '3500.00',
             ord_status: 'processing', // pending/processing/delivering
             cus_name: 'Melani',
-            shipping_method: 'self_pickup',
-            payment_method: 'cod',
+            shipping_method: 'Self Pickup',
+            payment_method: 'COD',
             pay_status: 'pending' //pending/completed
         },
         {
@@ -29,8 +29,8 @@ const getOrdersByUserId = async () => {
             ord_total: '4200.00',
             ord_status: 'delivering', // pending/processing/delivering
             cus_name: 'Melani',
-            shipping_method: 'self_pickup',
-            payment_method: 'cod',
+            shipping_method: 'Self Pickup',
+            payment_method: 'COD',
             pay_status: 'completed' //pending/completed
         },
     ];
@@ -63,10 +63,10 @@ const getOrderByOrderId = async () => {
             email: 'nadun@gmail.com',
             address: 'No.54, Katugastota Rd, Kandy',
             city: 'Kandy',
-            method: 'self_pickup',
+            method: 'Self Pickup',
         },
         ord_payment: {
-            method: 'cod',
+            method: 'COD',
             discount: '0',
             shipphing: '0',
             total: '0',
