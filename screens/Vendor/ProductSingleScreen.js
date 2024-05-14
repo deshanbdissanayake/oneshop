@@ -29,9 +29,6 @@ const ProductSingleScreen = () => {
             let proCatData = proData.categories.map(catId => cats.find(cat => cat.cat_id === catId));
             let proTagData = proData.tags.map(tagId => tags.find(tag => tag.tag_id === tagId));
 
-            console.log(proCatData)
-            console.log(proTagData)
-    
             setCats(proCatData);
             setTags(proTagData);
         } catch (error) {

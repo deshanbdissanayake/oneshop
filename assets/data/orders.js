@@ -48,9 +48,11 @@ const getOrderByOrderId = async () => {
         ord_items: [
             {
                 pro_id: 1,
-                pro_name: 'lemons',
+                pro_name: 'Lorem ipsum dolor sit amet',
+                pro_sku: 'LM-001',
+                pro_image: 'https://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/back01.jpg',
                 qty: 10,
-                unit_price: 230,
+                unit_price: '230',
             }
         ],
         ord_customer: {
@@ -61,15 +63,15 @@ const getOrderByOrderId = async () => {
             name: 'Nadun Tharaka',
             contact: '0788903453',
             email: 'nadun@gmail.com',
-            address: 'No.54, Katugastota Rd, Kandy',
-            city: 'Kandy',
+            address: '',
+            city: '',
             method: 'Self Pickup',
         },
         ord_payment: {
             method: 'COD',
             discount: '0',
             shipphing: '0',
-            total: '0',
+            total: '2300',
             pay_status: 'pending' //pending/completed
         },
         ord_history: [

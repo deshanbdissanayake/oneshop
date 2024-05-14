@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontFamily: 'ms-regular',
         color: colors.textColorPri,
+        marginTop: 5,
     },
     cusNameTextStyles: {
         fontSize: 14,

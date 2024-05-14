@@ -10,7 +10,7 @@ const VendorProductCard = ({ proData, handleCardPress }) => {
         <Image style={styles.cardImageStyles} source={{uri: proData.pro_images.img_1}} />
       </View>
       <View style={styles.cardTextWrapper}>
-        <View style={styles.cardNameTextWrapper}>
+        <View>
           <Text style={styles.cardNameTextStyles} numberOfLines={1} >{proData.pro_name}</Text>
           <Text style={styles.cardSkuTextStyles} numberOfLines={1} >{proData.pro_sku}</Text>
         </View>
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
     },
     cardNameTextWrapper: {
-
+      
     },
     cardNameTextStyles: {
       fontSize: 14,
