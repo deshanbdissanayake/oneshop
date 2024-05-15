@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import Input from '../../components/general/Input'
 import Button from '../../components/general/Button'
 import MultiSelect from '../../components/general/MultiSelect'
+import { container, marginBottom10 } from '../../assets/commonStyles'
 
 const ProductAddScreen = ({ pro_id = null }) => {
   const navigation = useNavigation();
@@ -30,14 +31,14 @@ const ProductAddScreen = ({ pro_id = null }) => {
   });
   
   return (
-    <View style={styles.container}>
+    <View style={container}>
       <Header text={title} handleGoBack={handleGoBack} />
       <ScrollView 
         contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.formStyles}>
-          <View style={styles.formGroup}>
+          <View style={[marginBottom10]}>
             <Text style={styles.labelTextStyles}>Product Name</Text>
             <Input
               keyboardType={'default'}
@@ -46,7 +47,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
               placeholder={'Enter Product Name'}
             />
           </View>
-          <View style={styles.formGroup}>
+          <View style={[marginBottom10]}>
             <Text style={styles.labelTextStyles}>Product Description</Text>
             <Input
               keyboardType={'default'}
@@ -57,7 +58,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
               textArea={true}
             />
           </View>
-          <View style={styles.formGroup}>
+          <View style={[marginBottom10]}>
             <Text style={styles.labelTextStyles}>Product SKU</Text>
             <Input
               keyboardType={'default'}
@@ -66,7 +67,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
               placeholder={'Enter Product SKU'}
             />
           </View>
-          <View style={styles.formGroup}>
+          <View style={[marginBottom10]}>
             <Text style={styles.labelTextStyles}>Product Price</Text>
             <Input
               keyboardType={'numeric'}
@@ -75,7 +76,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
               placeholder={'Enter Product Price'}
             />
           </View>
-          <View style={styles.formGroup}>
+          <View style={[marginBottom10]}>
             <Text style={styles.labelTextStyles}>Product Sale Price</Text>
             <Input
               keyboardType={'numeric'}
@@ -84,7 +85,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
               placeholder={'Enter Product Sale Price'}
             />
           </View>
-          <View style={styles.formGroup}>
+          <View style={[marginBottom10]}>
             <Text style={styles.labelTextStyles}>Product Category</Text>
             
           </View>
@@ -104,18 +105,9 @@ const ProductAddScreen = ({ pro_id = null }) => {
 export default ProductAddScreen
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.bgColor,
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-  },
   contentContainer: {
     flexGrow: 1,
     justifyContent: 'space-between',
-  },
-  formGroup: {
-    marginBottom: 15,
   },
   labelTextStyles: {
     marginBottom: 5,

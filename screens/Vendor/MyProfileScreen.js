@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import React from 'react'
 import Header from '../../components/general/Header'
 import { useNavigation } from '@react-navigation/native'
-import { colors } from '../../assets/colors/colors'
+import { container } from '../../assets/commonStyles'
 
 const MyProfileScreen = () => {
     const navigation = useNavigation();
@@ -11,7 +11,7 @@ const MyProfileScreen = () => {
         navigation.goBack();
     }
     return (
-        <View style={styles.container}>
+        <View style={container}>
             <Header text={'My Profile'} handleGoBack={handleGoBack} />
             <Text>MyProfileScreen</Text>
         </View>
@@ -19,12 +19,3 @@ const MyProfileScreen = () => {
 }
 
 export default MyProfileScreen
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.bgColor,
-        paddingVertical: 15,
-        paddingHorizontal: 15,
-    },
-})

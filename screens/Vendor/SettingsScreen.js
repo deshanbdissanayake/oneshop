@@ -4,6 +4,7 @@ import { colors } from '../../assets/colors/colors'
 import Header from '../../components/general/Header'
 import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { container } from '../../assets/commonStyles';
 
 const RowItem = ({icon, text, func}) => {
   return (
@@ -31,7 +32,7 @@ const SettingsScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={container}>
       <Header text={'Settings'} /> 
       <View style={styles.tableStyles}>
         <RowItem 
@@ -52,12 +53,6 @@ const SettingsScreen = () => {
 export default SettingsScreen
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.bgColor,
-    paddingVertical: 15,
-    paddingHorizontal: 15,
-  },
   tableStyles: {
     borderTopWidth: 1,
     borderColor: colors.border,

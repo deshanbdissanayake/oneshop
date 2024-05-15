@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { colors } from '../../assets/colors/colors'
+import { flexRow, marginTop10, textLight12, textRegular10, textRegular12, textRegular14, textSemiBold14 } from '../../assets/commonStyles'
 
 const VendorOrderCard = ({cardData, handleOrderClick}) => {
     
@@ -30,26 +31,26 @@ const VendorOrderCard = ({cardData, handleOrderClick}) => {
 
     return (
         <TouchableOpacity style={styles.cardWrapper} onPress={() => handleOrderClick(cardData.ord_id)}>
-            <View style={styles.ordWrapper}>
-                <Text style={styles.ordNumTextStyles}>#{cardData.ord_num}</Text>
-                <Text style={styles.ordDateTextStyles}>{cardData.ord_date}</Text>
+            <View style={flexRow}>
+                <Text style={[textSemiBold14]}>#{cardData.ord_num}</Text>
+                <Text style={[textLight12]}>{cardData.ord_date}</Text>
             </View>
 
             <Text style={styles.ordTotalTextStyles}>LKR {cardData.ord_total}</Text>
-            <Text style={styles.cusNameTextStyles}>{cardData.cus_name}</Text>
+            <Text style={[textRegular14]}>{cardData.cus_name}</Text>
 
             <View style={styles.methodWrapper}>
-                <Text style={styles.shippingMethodTextStyles}>{cardData.shipping_method}</Text>
-                <Text style={styles.payMethodTextStyles}>{cardData.payment_method}</Text>
+                <Text style={[styles.shippingMethodTextStyles, textRegular12]}>{cardData.shipping_method}</Text>
+                <Text style={[styles.payMethodTextStyles, textRegular12]}>{cardData.payment_method}</Text>
             </View>
 
-            <View style={styles.statusWrapper}>
+            <View style={[flexRow, marginTop10]}>
                 <View>
-                    <Text style={styles.statusTitleTextStyles}>Order Status</Text>
+                    <Text style={[textRegular10, styles.statusTitleTextStyles]}>Order Status</Text>
                     {sttFunc(cardData.ord_status)}
                 </View>
                 <View>
-                    <Text style={[styles.statusTitleTextStyles, {textAlign: 'right', marginRight: 1,}]}>Pay Status</Text>
+                    <Text style={[textRegular10, styles.statusTitleTextStyles, {textAlign: 'right', marginRight: 1}]}>Pay Status</Text>
                     {sttFunc(cardData.pay_status)}
                 </View>
             </View>
@@ -69,31 +70,11 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: colors.border,
     },
-    ordWrapper: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    ordNumTextStyles: {
-        fontSize: 14,
-        fontFamily: 'ms-semibold',
-        color: colors.textColorPri,
-    },
-    ordDateTextStyles: {
-        fontSize: 12,
-        fontFamily: 'ms-light',
-        color: colors.textColorPri,
-    },
     ordTotalTextStyles: {
         fontSize: 20,
         fontFamily: 'ms-regular',
         color: colors.textColorPri,
         marginTop: 5,
-    },
-    cusNameTextStyles: {
-        fontSize: 14,
-        fontFamily: 'ms-regular',
-        color: colors.textColorPri,
     },
     methodWrapper: {
         flexDirection: 'row',
@@ -103,29 +84,12 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     shippingMethodTextStyles: {
-        fontSize: 12,
-        fontFamily: 'ms-regular',
-        color: colors.textColorPri,
         borderRightWidth: 1,
         borderColor: colors.border,
         paddingRight: 5,
         marginRight: 5,
     },
-    payMethodTextStyles: {
-        fontSize: 12,
-        fontFamily: 'ms-regular',
-        color: colors.textColorPri,
-    },
-    statusWrapper: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: 10,
-    },
     statusTitleTextStyles: {
-        fontSize: 10,
-        fontFamily: 'ms-regular',
-        color: colors.textColorPri,
         marginLeft: 1,
         marginBottom: 2,
     },

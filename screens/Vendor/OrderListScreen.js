@@ -7,6 +7,7 @@ import { getOrdersByUserId } from '../../assets/data/orders'
 import LoadingScreen from '../LoadingScreen'
 import NoData from '../../components/general/NoData'
 import VendorOrderCard from '../../components/app/VendorOrderCard'
+import { container, flex1 } from '../../assets/commonStyles'
 
 const OrderListScreen = () => {
   const navigation = useNavigation();
@@ -47,11 +48,11 @@ const OrderListScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[container]}>
       <Header
         text={'My Orders'}
       />
-      <View style={styles.contentContaienr}>
+      <View style={flex1}>
         {orders && orders.length > 0 ? (
           <FlatList
             data={orders}
@@ -87,14 +88,6 @@ const OrderListScreen = () => {
 export default OrderListScreen
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.bgColor,
-    padding: 15,
-  },
-  contentContaienr: {
-    flex: 1,
-  },
   noDataWrapper: {
     flexGrow: 1,
   },

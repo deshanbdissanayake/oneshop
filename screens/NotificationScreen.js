@@ -8,6 +8,7 @@ import MiniButton from '../components/general/MiniButton'
 import { getAllNotificationsByUserId, markAsRead } from '../assets/data/notifications'
 import LoadingScreen from './LoadingScreen'
 import NoData from '../components/general/NoData'
+import { container, marginTop5, textAlignJustify, textLight12, textRegular12, textSemiBold12 } from '../assets/commonStyles'
 
 const NotificationCard = ({cardData}) => {
     const [showAll, setShowAll] = useState(false);
@@ -33,9 +34,9 @@ const NotificationCard = ({cardData}) => {
             </View>
             <View style={styles.cardRightWrapper}>
                 <Pressable onPress={() => setShowAll(!showAll)}>
-                    <Text style={styles.cardTitleTextStyles}>{title}</Text>
-                    <Text style={styles.cardDescTextStyles} numberOfLines={showAll ? null : 2}>{desc}</Text>
-                    <Text style={styles.cardDateTimeTextStyles}>{dateTime}</Text>
+                    <Text style={[textSemiBold12]}>{title}</Text>
+                    <Text style={[textRegular12, marginTop5, textAlignJustify]} numberOfLines={showAll ? null : 2}>{desc}</Text>
+                    <Text style={[textLight12, marginTop5]}>{dateTime}</Text>
                 </Pressable>
             </View>
         </View>
@@ -94,7 +95,7 @@ const NotificationScreen = () => {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={container}>
             <Header 
                 text={'Notifications'} 
                 handleGoBack={handleGoBack} 
@@ -122,12 +123,6 @@ const NotificationScreen = () => {
 export default NotificationScreen
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.bgColor,
-        paddingVertical: 15,
-        paddingHorizontal: 15,
-    },
     cardWrapper: {
         flexDirection: 'row',
         paddingVertical: 10,
@@ -142,23 +137,5 @@ const styles = StyleSheet.create({
     },
     cardRightWrapper: {
         flex: 10,
-    },
-    cardTitleTextStyles: {
-        fontSize: 12,
-        fontFamily: 'ms-semibold',
-        color: colors.textColorPri,
-    },
-    cardDescTextStyles: {
-        fontSize: 12,
-        fontFamily: 'ms-regular',
-        color: colors.textColorPri,
-        marginTop: 5,
-        textAlign: 'justify',
-    },
-    cardDateTimeTextStyles: {
-        fontSize: 12,
-        fontFamily: 'ms-light',
-        color: colors.textColorPri,
-        marginTop: 5,
     },
 })

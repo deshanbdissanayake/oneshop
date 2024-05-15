@@ -6,6 +6,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { getAllCategories } from '../../assets/data/categories'
 import { getAllTags } from '../../assets/data/tags'
 import LoadingScreen from '../LoadingScreen'
+import { container, flexGrow1, flexRow, marginBottom10, textAlignCenter, textAlignJustify, textLight12, textRegular12, textRegular14 } from '../../assets/commonStyles'
 
 const ProductSingleScreen = () => {
     const navigation = useNavigation();
@@ -48,15 +49,15 @@ const ProductSingleScreen = () => {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={container}>
             <Header
                 text={'Single Product'}
                 handleGoBack={handleGoBack}
             />
-            <ScrollView contentContainerStyle={styles.contentContainer} showsVerticalScrollIndicator={false}>
-                <View style={styles.imageWrapper} > 
+            <ScrollView contentContainerStyle={[flexGrow1]} showsVerticalScrollIndicator={false}>
+                <View> 
                     <Image style={styles.mainImageStyles} source={{uri: proData.pro_images.img_1}} />
-                    <View style={styles.subImagesWrapper}>
+                    <View style={flexRow}>
                         <Image style={styles.subImageStyles} source={{uri: proData.pro_images.img_2}} />
                         <Image style={styles.subImageStyles} source={{uri: proData.pro_images.img_3}} />
                         <Image style={styles.subImageStyles} source={{uri: proData.pro_images.img_4}} />
@@ -65,9 +66,9 @@ const ProductSingleScreen = () => {
                 <View style={styles.productDetailsWrapper}>
                     <Text style={styles.nameTextStyles}>{proData.pro_name}</Text>
                     <View style={styles.stockSkuWrapper}>
-                        <Text style={styles.skuTextStyles}>{proData.pro_sku}</Text>
+                        <Text style={[textRegular14]}>{proData.pro_sku}</Text>
                         <View style={[styles.stockStatusWrapper]}>
-                            <Text style={[styles.stockStatusTextStyles, { color : proData.stock_status == 'in' ? colors.success : colors.danger }]}>({proData.stock_status == 'in' ? 'In Stock' : 'Out of Stock'})</Text>
+                            <Text style={[textRegular14, textAlignCenter]}>({proData.stock_status == 'in' ? 'In Stock' : 'Out of Stock'})</Text>
                         </View>
                     </View>
                     <View style={styles.priceWrapper}>
@@ -82,22 +83,22 @@ const ProductSingleScreen = () => {
                         )}
                     </View>
                     {proData.discount &&
-                        <View style={styles.discountDateWrapper}>
-                            <Text style={styles.discountDateTextStyles}>{`(Discount From ${proData.discount.dis_start} To ${proData.discount.dis_end})`}</Text>
+                        <View style={[marginBottom10]}>
+                            <Text style={[textRegular12]}>{`(Discount From ${proData.discount.dis_start} To ${proData.discount.dis_end})`}</Text>
                         </View>
                     }
                     <View style={styles.categoriesWrapper}>
                         {(cats && cats.length > 0) && cats.map((cat, index)=>(
                             <View style={styles.categoryWrapper} key={index}>
-                                <Text style={styles.categoryTextStyles}>{cat.cat_name}</Text>
+                                <Text style={[textRegular14]}>{cat.cat_name}</Text>
                             </View>
                         ))}
                     </View>
-                    <Text style={styles.descTextStyles}>{proData.pro_desc}</Text>
+                    <Text style={[textRegular14, marginBottom10, textAlignJustify]}>{proData.pro_desc}</Text>
                     <View style={styles.tagsWrapper}>
                         {(tags && tags.length > 0) && tags.map((tag, index)=>(
                             <View style={styles.tagWrapper} key={index}>
-                                <Text style={styles.tagTextStyles}>{tag.tag_name}</Text>
+                                <Text style={[textLight12, textAlignCenter]}>{tag.tag_name}</Text>
                             </View>
                         ))}
                     </View>
@@ -110,28 +111,12 @@ const ProductSingleScreen = () => {
 export default ProductSingleScreen
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.bgColor,
-        padding: 15,
-    },
-    contentContainer: {
-        flexGrow: 1,
-    },
-    imageWrapper: {
-         
-    },
     mainImageStyles: {
         width: '100%',
         height: 180,
         resizeMode: 'cover',
         marginBottom: 7,
         borderRadius: 10,
-    },
-    subImagesWrapper: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
     },
     subImageStyles: {
         width: '32%',
@@ -145,11 +130,6 @@ const styles = StyleSheet.create({
     nameTextStyles: {
         fontSize: 18,
         fontFamily: 'ms-semibold',
-        color: colors.textColorPri,
-    },
-    skuTextStyles: {
-        fontSize: 14,
-        fontFamily: 'ms-regular',
         color: colors.textColorPri,
     },
     priceWrapper: {
@@ -180,18 +160,6 @@ const styles = StyleSheet.create({
         borderRightWidth: 1,
         borderRightColor: colors.border,
     },
-    categoryTextStyles: {
-        fontSize: 14,
-        fontFamily: 'ms-regular',
-        color: colors.textColorPri,
-    },
-    descTextStyles: {
-        fontSize: 14,
-        fontFamily: 'ms-regular',
-        color: colors.textColorPri,
-        marginBottom: 15,
-        textAlign: 'justify',
-    },
     tagsWrapper: {
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -206,30 +174,11 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         marginRight: 5,
     },
-    tagTextStyles: {
-        fontSize: 12,
-        fontFamily: 'ms-light',
-        color: colors.textColorPri,
-        textAlign: 'center',
-    },
     stockSkuWrapper: {
         flexDirection: 'row',
     },
     stockStatusWrapper: {
         borderRadius:5,
         marginLeft: 5,
-    },
-    stockStatusTextStyles: {
-        fontSize: 14,
-        fontFamily: 'ms-regular',
-        textAlign: 'center',
-    },
-    discountDateWrapper: {
-        marginBottom: 15,
-    },
-    discountDateTextStyles: {
-        fontSize: 12,
-        fontFamily: 'ms-regular',
-        color: colors.textColorPri,
     },
 })

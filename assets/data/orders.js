@@ -101,4 +101,19 @@ const getOrderByOrderId = async () => {
     return data;
 }
 
-export { getOrdersByUserId, getOrderByOrderId }
+const confirmOrder = async (ord_id) => {
+    let data = {stt: 'success', msg: 'Order Confirmed!', data: ''}
+    return data;
+}
+
+const confirmPayment = async (ord_id) => {
+    let data = {stt: 'success', msg: 'Payment Confirmed!', data: ''}
+    return data;
+}
+
+const confirmDelivery = async (ord_id) => {
+    let data = {stt: 'success', msg: 'Delivery Confirmed!', data: ''}
+    return data;
+}
+
+export { getOrdersByUserId, getOrderByOrderId, confirmOrder, confirmPayment, confirmDelivery }

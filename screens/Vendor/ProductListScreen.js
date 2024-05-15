@@ -9,6 +9,7 @@ import { getProductsByUserId } from '../../assets/data/products'
 import LoadingScreen from '../LoadingScreen'
 import VendorProductCard from '../../components/app/VendorProductCard'
 import NoData from '../../components/general/NoData'
+import { container, flex1 } from '../../assets/commonStyles'
 
 const ProductListScreen = () => {
     const navigation = useNavigation();
@@ -51,7 +52,7 @@ const ProductListScreen = () => {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={container}>
             <Header 
                 text={'My Products'} 
                 component={
@@ -62,7 +63,7 @@ const ProductListScreen = () => {
                     />
                 }
             />
-            <View style={styles.contentContainer}>
+            <View style={flex1}>
                 {products && products.length > 0 ? (
                     <FlatList
                         data={products}
@@ -74,7 +75,7 @@ const ProductListScreen = () => {
                     />
                 ) : (
                     <ScrollView 
-                        contentContainerStyle={styles.contentContainer} 
+                        contentContainerStyle={flex1} 
                         refreshControl={
                             <RefreshControl
                                 refreshing={refreshing}
@@ -91,15 +92,3 @@ const ProductListScreen = () => {
 }
 
 export default ProductListScreen
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.bgColor,
-        paddingVertical: 15,
-        paddingHorizontal: 15,
-    },
-    contentContainer: {
-        flex: 1,
-    },
-})

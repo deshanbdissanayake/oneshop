@@ -1,22 +1,23 @@
 import { Text, TouchableOpacity, View, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { colors } from '../../assets/colors/colors'
+import { flexRow, textLight12, textRegular12, textSemiBold14 } from '../../assets/commonStyles'
 
 const VendorProductCard = ({ proData, handleCardPress }) => {
   console.log(proData.pro_image)
   return (
-    <TouchableOpacity style={styles.cardWrapper} onPress={() => handleCardPress(proData)}>
-      <View style={styles.cardImageWrapper}>
+    <TouchableOpacity style={[styles.cardWrapper, flexRow]} onPress={() => handleCardPress(proData)}>
+      <View style={[styles.cardImageWrapper]}>
         <Image style={styles.cardImageStyles} source={{uri: proData.pro_images.img_1}} />
       </View>
       <View style={styles.cardTextWrapper}>
         <View>
-          <Text style={styles.cardNameTextStyles} numberOfLines={1} >{proData.pro_name}</Text>
-          <Text style={styles.cardSkuTextStyles} numberOfLines={1} >{proData.pro_sku}</Text>
+          <Text style={[textSemiBold14]} numberOfLines={1} >{proData.pro_name}</Text>
+          <Text style={[textRegular12]} numberOfLines={1} >{proData.pro_sku}</Text>
         </View>
-        <View style={styles.cardBottomWrapper}>
+        <View style={[flexRow]}>
           <View>
-            <Text style={styles.lkrTextStyles}>LKR</Text>
+            <Text style={[textLight12]}>LKR</Text>
             <View style={styles.cardPriceTextWrapper}>
               {proData.discount ? (
                 <>
@@ -45,9 +46,6 @@ const styles = StyleSheet.create({
       paddingHorizontal: 10,
       paddingVertical: 8,
       marginBottom: 10,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
       borderWidth: 0.5,
       borderRadius: 10,
       borderColor: colors.border,
@@ -67,29 +65,6 @@ const styles = StyleSheet.create({
       height: 90,
       marginLeft: 5,
       justifyContent: 'space-between',
-    },
-    cardNameTextWrapper: {
-      
-    },
-    cardNameTextStyles: {
-      fontSize: 14,
-      fontFamily: 'ms-semibold',
-      color: colors.textColorPri,
-    },
-    cardSkuTextStyles: {
-      fontSize: 12,
-      fontFamily: 'ms-regular',
-      color: colors.textColorPri,
-    },
-    cardBottomWrapper: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    },
-    lkrTextStyles: {
-      fontSize: 12,
-      fontFamily: 'ms-light',
-      color: colors.textColorPri,
     },
     cardPriceTextWrapper: {
       flexDirection: 'row',
