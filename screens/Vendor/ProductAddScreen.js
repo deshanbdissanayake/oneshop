@@ -87,7 +87,9 @@ const ProductAddScreen = ({ pro_id = null }) => {
           </View>
           <View style={[marginBottom10]}>
             <Text style={styles.labelTextStyles}>Product Category</Text>
-            
+            <MultiSelect
+              options={[{value: '1', label: 'IT'}, {value: '2', label: 'Consumer Goods'}, {value: '3', label: 'Beauty'}]}
+            />
           </View>
         </View>
         <View style={styles.btnStyles}>

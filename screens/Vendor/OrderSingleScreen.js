@@ -33,6 +33,12 @@ const OrderSingleScreen = () => {
     deliveryBtn: false
   });
 
+  const buttonData = [
+    { label: 'Confirm Order', key: 'order', loading: btnStt.orderBtn },
+    { label: 'Confirm Payment', key: 'payment', loading: btnStt.paymentBtn },
+    { label: 'Confirm Delivery', key: 'delivery', loading: btnStt.deliveryBtn }
+  ];
+
   const getOrder = async () => {
     try {
       let res = await getOrderByOrderId(ord_id);
@@ -172,31 +178,18 @@ const OrderSingleScreen = () => {
             />
           </View>
 
-          <View style={[marginTop10]}>
-            <Button
-              bgColor={colors.bgColorSec}
-              bdr={colors.bgColorSec}
-              content={<Text style={{color: colors.white, fontFamily: 'ms-regular'}}>Confirm Order</Text>}
-              func={() => handleConfirmClick('order')}
-              loading={btnStt.orderBtn}
-              loaderIconColor={colors.white}
-            />
-            <Button
-              bgColor={colors.bgColorSec}
-              bdr={colors.bgColorSec}
-              content={<Text style={{color: colors.white, fontFamily: 'ms-regular'}}>Confirm Payment</Text>}
-              func={() => handleConfirmClick('payment')}
-              loading={btnStt.paymentBtn}
-              loaderIconColor={colors.white}
-            />
-            <Button
-              bgColor={colors.bgColorSec}
-              bdr={colors.bgColorSec}
-              content={<Text style={{color: colors.white, fontFamily: 'ms-regular'}}>Confirm Delivery</Text>}
-              func={() => handleConfirmClick('delivery')}
-              loading={btnStt.deliveryBtn}
-              loaderIconColor={colors.white}
-            />
+          <View style={marginTop10}>
+            {buttonData.map(({ label, key, loading }) => (
+              <Button
+                key={key}
+                bgColor={colors.bgColorSec}
+                bdr={colors.bgColorSec}
+                content={<Text style={{ color: colors.white, fontFamily: 'ms-regular' }}>{label}</Text>}
+                func={() => handleConfirmClick(key)}
+                loading={loading}
+                loaderIconColor={colors.white}
+              />
+            ))}
           </View>
 
         </View>

@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, Modal, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import colors from '../../assets/colors/colors';
 import { Entypo } from '@expo/vector-icons';
+import { colors } from '../../assets/colors/colors';
 
 const Select = ({ value, onSelect, placeholder, icon, options }) => {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -56,7 +56,7 @@ const Select = ({ value, onSelect, placeholder, icon, options }) => {
                         </Text>
                     </View>
                     <View style={styles.selectRightWrapper}>
-                        <Entypo name={showDropdown ? "chevron-up" : "chevron-down"} size={24} color={colors.textGraySecondary} />
+                        <Entypo name={showDropdown ? "chevron-up" : "chevron-down"} size={24} color={colors.border} />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -126,7 +126,8 @@ const styles = StyleSheet.create({
     },
     selectText: {
         fontSize: 14,
-        color: colors.textGraySecondary,
+        fontFamily: 'ms-light',
+        color: colors.textColorPri,
         width: '100%',
     },
     dropdownContainer: {
@@ -147,7 +148,8 @@ const styles = StyleSheet.create({
     },
     optionTextStyles: {
         fontSize: 14,
-        color: colors.textGraySecondary,
+        fontFamily: 'ms-light',
+        color: colors.textColorPri,
     },
     selectedOption: {
         borderRadius: 5,

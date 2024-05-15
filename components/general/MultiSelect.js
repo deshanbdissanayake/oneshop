@@ -6,59 +6,58 @@ import { colors } from '../../assets/colors/colors';
 
 const MultiSelect = ({ value, onSelect, placeholder, icon, options }) => {
     const [showDropdown, setShowDropdown] = useState(false);
-    const [selectedOptions, setSelectedOptions] = useState([]);
+    const [selectedOptions, setSelectedOptions] = useState(null);
 
     useEffect(() => {
         if (value !== '' && options) {
             const selected = options.find((option) => option.value === value);
-            setSelectedOptions([selected]);
+            setSelectedOptions(selected);
         }
     }, [value]);
 
-    const handleOptionSelect = (option) => {
-        const selectedIndex = selectedOptions.findIndex((selected) => selected.value === option.value);
-        if (selectedIndex === -1) {
-            // Option not selected, add to the list
-            setSelectedOptions([...selectedOptions, option]);
+    const handleOptionSelect = (value) => {
+        console.log("selectedOptions before update:", selectedOptions);
+        let selArr = Array.isArray(selectedOptions) ? [...selectedOptions] : [];
+        console.log("selArr before update:", selArr);
+      
+        const isSelected = selArr.includes(value);
+      
+        if (isSelected) {
+          selArr = selArr.filter(option => option !== value);
         } else {
-            // Option already selected, remove from the list
-            const updatedOptions = [...selectedOptions];
-            updatedOptions.splice(selectedIndex, 1);
-            setSelectedOptions(updatedOptions);
+          selArr.push(value);
         }
-    };
-
-    const isOptionSelected = (option) => {
-        return selectedOptions.some((selected) => selected.value === option.value);
-    };
-
-    const closeModal = () => {
-        setShowDropdown(false);
-    };
-
-    const confirmSelection = () => {
-        onSelect(selectedOptions.map(option => option.value));
-        setShowDropdown(false);
-    };
-
+      
+        console.log("selArr after update:", selArr);
+      
+        setSelectedOptions(selArr);
+        // setShowDropdown(false);
+        //onSelect(selArr);
+      };
+      
+      
     const RenderDropdownItem = ({ item, index }) => {
-        const isSelected = isOptionSelected(item);
+        const isSelected = selectedOptions === item;
 
         const itemStyles = [
             styles.optionStyles,
-            isSelected && styles.selectedOption
+            isSelected && styles.selectedOptions
         ];
 
         return (
             <>
                 { !isSelected ? <View style={styles.optionBorderStyles}></View> : null }
-                <TouchableOpacity onPress={() => handleOptionSelect(item)} style={itemStyles}>
+                <TouchableOpacity onPress={() => handleOptionSelect(item.value)} style={itemStyles}>
                     <Text style={styles.optionTextStyles} numberOfLines={1}>
                         {item.label}
                     </Text>
                 </TouchableOpacity>
             </>
         );
+    };
+
+    const closeModal = () => {
+        setShowDropdown(false);
     };
 
     return (
@@ -68,11 +67,11 @@ const MultiSelect = ({ value, onSelect, placeholder, icon, options }) => {
                     <View style={styles.selectLeftWrapper}>
                         {icon}
                         <Text style={styles.selectText} numberOfLines={1}>
-                            {selectedOptions.length > 0 ? selectedOptions.map(option => option.label).join(', ') : placeholder}
+                            {selectedOptions ? selectedOptions.label : placeholder}
                         </Text>
                     </View>
                     <View style={styles.selectRightWrapper}>
-                        <Entypo name={showDropdown ? "chevron-up" : "chevron-down"} size={24} color={colors.textGraySecondary} />
+                        <Entypo name={showDropdown ? "chevron-up" : "chevron-down"} size={24} color={colors.border} />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -95,9 +94,6 @@ const MultiSelect = ({ value, onSelect, placeholder, icon, options }) => {
                                         <RenderDropdownItem item={{value: 0, label: 'No Data'}} index={0} key={0} closeModal={closeModal}/>
                                     )}
                                 </ScrollView>
-                                <TouchableOpacity onPress={confirmSelection}>
-                                    <Text style={styles.confirmButton}>Confirm</Text>
-                                </TouchableOpacity>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
@@ -145,7 +141,8 @@ const styles = StyleSheet.create({
     },
     selectText: {
         fontSize: 14,
-        color: colors.textGraySecondary,
+        fontFamily: 'ms-light',
+        color: colors.textColorPri,
         width: '100%',
     },
     dropdownContainer: {
@@ -159,6 +156,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         width: '100%',
         justifyContent: 'center',
+        flexDirection: 'row',
     },
     optionBorderStyles: {
         marginHorizontal: 10,
@@ -166,11 +164,12 @@ const styles = StyleSheet.create({
     },
     optionTextStyles: {
         fontSize: 14,
-        color: colors.textGraySecondary,
+        fontFamily: 'ms-light',
+        color: colors.textColorPri,
     },
-    selectedOption: {
+    selectedOptions: {
         borderRadius: 5,
-        backgroundColor: colors.bgLight,
+        backgroundColor: colors.gray,
     },
     modalContainer: {
         flex: 1,
@@ -183,14 +182,6 @@ const styles = StyleSheet.create({
         maxHeight: 400,
         backgroundColor: colors.white,
         borderRadius: 5,
-    },
-    confirmButton: {
-        textAlign: 'center',
-        padding: 10,
-        backgroundColor: colors.primary,
-        color: colors.white,
-        borderRadius: 5,
-        marginTop: 10,
     },
 });
 
