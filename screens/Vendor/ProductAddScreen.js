@@ -23,12 +23,17 @@ const ProductAddScreen = ({ pro_id = null }) => {
 
   const [formData, setFormData] = useState({
     pro_name: null,
-    pro_desc: null,
     pro_sku: null,
-    pro_price: null,
-    pro_sale_price: null,
+    pro_desc: null,
+    pro_images: [],
     pro_cat: [],
+    pro_tags: [],
+    pro_price: null,
   });
+
+  const handleCategories = (selectedCategories) => {
+    setFormData((prevData) => ({...prevData, pro_cat: selectedCategories}))
+  }
   
   return (
     <View style={container}>
@@ -48,6 +53,15 @@ const ProductAddScreen = ({ pro_id = null }) => {
             />
           </View>
           <View style={[marginBottom10]}>
+            <Text style={styles.labelTextStyles}>Product SKU</Text>
+            <Input
+              keyboardType={'default'}
+              value={formData.pro_sku ?? ''}
+              onChangeText={(text) => setFormData((prevData) => ({ ...prevData, pro_sku: text }))}
+              placeholder={'Enter Product SKU'}
+            />
+          </View>
+          <View style={[marginBottom10]}>
             <Text style={styles.labelTextStyles}>Product Description</Text>
             <Input
               keyboardType={'default'}
@@ -56,15 +70,6 @@ const ProductAddScreen = ({ pro_id = null }) => {
               placeholder={'Enter Product Description'}
               multiline={true}
               textArea={true}
-            />
-          </View>
-          <View style={[marginBottom10]}>
-            <Text style={styles.labelTextStyles}>Product SKU</Text>
-            <Input
-              keyboardType={'default'}
-              value={formData.pro_sku ?? ''}
-              onChangeText={(text) => setFormData((prevData) => ({ ...prevData, pro_sku: text }))}
-              placeholder={'Enter Product SKU'}
             />
           </View>
           <View style={[marginBottom10]}>
@@ -88,7 +93,9 @@ const ProductAddScreen = ({ pro_id = null }) => {
           <View style={[marginBottom10]}>
             <Text style={styles.labelTextStyles}>Product Category</Text>
             <MultiSelect
+              value={["1", "2"]}
               options={[{value: '1', label: 'IT'}, {value: '2', label: 'Consumer Goods'}, {value: '3', label: 'Beauty'}]}
+              onSelect={handleCategories}
             />
           </View>
         </View>

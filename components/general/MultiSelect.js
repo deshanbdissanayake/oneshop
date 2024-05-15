@@ -1,24 +1,22 @@
 import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback, Modal, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Entypo } from '@expo/vector-icons';
+import { AntDesign, Entypo } from '@expo/vector-icons';
 import { colors } from '../../assets/colors/colors';
+import { textRegular14 } from '../../assets/commonStyles';
 
 const MultiSelect = ({ value, onSelect, placeholder, icon, options }) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState(null);
 
     useEffect(() => {
-        if (value !== '' && options) {
-            const selected = options.find((option) => option.value === value);
-            setSelectedOptions(selected);
+        if(value && value.length > 0 && options){
+            setSelectedOptions(value);
         }
     }, [value]);
 
     const handleOptionSelect = (value) => {
-        console.log("selectedOptions before update:", selectedOptions);
         let selArr = Array.isArray(selectedOptions) ? [...selectedOptions] : [];
-        console.log("selArr before update:", selArr);
       
         const isSelected = selArr.includes(value);
       
@@ -28,16 +26,15 @@ const MultiSelect = ({ value, onSelect, placeholder, icon, options }) => {
           selArr.push(value);
         }
       
-        console.log("selArr after update:", selArr);
-      
         setSelectedOptions(selArr);
-        // setShowDropdown(false);
-        //onSelect(selArr);
+        onSelect(selArr);
       };
       
       
     const RenderDropdownItem = ({ item, index }) => {
-        const isSelected = selectedOptions === item;
+        let selArr = Array.isArray(selectedOptions) ? [...selectedOptions] : [];
+      
+        const isSelected = selArr.includes(item.value);
 
         const itemStyles = [
             styles.optionStyles,
@@ -45,14 +42,16 @@ const MultiSelect = ({ value, onSelect, placeholder, icon, options }) => {
         ];
 
         return (
-            <>
-                { !isSelected ? <View style={styles.optionBorderStyles}></View> : null }
-                <TouchableOpacity onPress={() => handleOptionSelect(item.value)} style={itemStyles}>
-                    <Text style={styles.optionTextStyles} numberOfLines={1}>
-                        {item.label}
-                    </Text>
-                </TouchableOpacity>
-            </>
+            <TouchableOpacity onPress={() => handleOptionSelect(item.value)} style={itemStyles}>
+                <Text style={styles.optionTextStyles} numberOfLines={1}>
+                    {item.label}
+                </Text>
+                {isSelected && (
+                    <View style={styles.selectedCheckWrapper}>
+                        <AntDesign name="checkcircle" size={24} color={colors.success} />
+                    </View>
+                )}
+            </TouchableOpacity>
         );
     };
 
@@ -67,7 +66,7 @@ const MultiSelect = ({ value, onSelect, placeholder, icon, options }) => {
                     <View style={styles.selectLeftWrapper}>
                         {icon}
                         <Text style={styles.selectText} numberOfLines={1}>
-                            {selectedOptions ? selectedOptions.label : placeholder}
+                            {selectedOptions ? `${selectedOptions.length} options selected` : placeholder}
                         </Text>
                     </View>
                     <View style={styles.selectRightWrapper}>
@@ -81,7 +80,7 @@ const MultiSelect = ({ value, onSelect, placeholder, icon, options }) => {
                 animationType="fade" 
                 onRequestClose={closeModal}
             >
-                <TouchableWithoutFeedback onPress={closeModal}>
+                <TouchableWithoutFeedback>
                     <View style={styles.modalContainer}>
                         <TouchableWithoutFeedback>
                             <View style={styles.modalContent}>
@@ -94,6 +93,9 @@ const MultiSelect = ({ value, onSelect, placeholder, icon, options }) => {
                                         <RenderDropdownItem item={{value: 0, label: 'No Data'}} index={0} key={0} closeModal={closeModal}/>
                                     )}
                                 </ScrollView>
+                                <TouchableOpacity style={styles.doneBtnWrapper} onPress={closeModal}>
+                                    <Text style={[textRegular14, {color: colors.textColorSec}]}>Done</Text>
+                                </TouchableOpacity>
                             </View>
                         </TouchableWithoutFeedback>
                     </View>
@@ -114,7 +116,7 @@ MultiSelect.propTypes = {
 };
 
 MultiSelect.defaultProps = {
-  placeholder: 'MultiSelect an option',
+  placeholder: 'Select options',
 };
 
 const styles = StyleSheet.create({
@@ -155,12 +157,11 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
         paddingHorizontal: 20,
         width: '100%',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         flexDirection: 'row',
     },
-    optionBorderStyles: {
-        marginHorizontal: 10,
-        justifyContent: 'center',
+    selectedCheckWrapper: {
+        marginLeft: 15,
     },
     optionTextStyles: {
         fontSize: 14,
@@ -182,6 +183,15 @@ const styles = StyleSheet.create({
         maxHeight: 400,
         backgroundColor: colors.white,
         borderRadius: 5,
+    },
+    doneBtnWrapper: {
+        paddingVertical: 15,
+        paddingHorizontal: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: colors.bgColorSec,
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
     },
 });
 
