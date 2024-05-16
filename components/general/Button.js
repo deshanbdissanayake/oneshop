@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert } fr
 import React from 'react'
 import { colors } from '../../assets/colors/colors'
 
-const Button = ({bgColor, content, func, bdr='', loading = false, loaderIconColor = colors.textColorPri,  paddingStt = true, btnDisabled = false, errorMessage = "Error"}) => {
+const Button = ({bgColor, content, func, bdr='', loading = false, loaderIconColor = colors.textColorPri,  paddingStt = true, btnDisabled = false, errorMessage = "Error", itemPosition = 'center'}) => {
 
   //to show an alert to the user why button is disabled
   const showAlert = (msg) => {
@@ -31,6 +31,7 @@ const Button = ({bgColor, content, func, bdr='', loading = false, loaderIconColo
             <TouchableOpacity
               style={[
                 styles.buttonWrapper,
+                {alignItems: itemPosition},
                 { backgroundColor: bgColor, borderWidth: bdr === '' ? 0 : 1, borderColor: bdr === '' ? 'transparent' : bdr }
               ]}
               onPress={func}
@@ -45,6 +46,7 @@ const Button = ({bgColor, content, func, bdr='', loading = false, loaderIconColo
             <TouchableOpacity
               style={[
                 styles.buttonWrapper,
+                {alignItems: itemPosition},
                 { backgroundColor: bgColor, opacity: 0.6, borderWidth: bdr === '' ? 0 : 1, borderColor: bdr === '' ? 'transparent' : bdr }
               ]}
               onPress={() => showAlert(errorMessage)}
@@ -65,7 +67,6 @@ export default Button
 const styles = StyleSheet.create({
     buttonWrapper : {
         justifyContent: 'center',
-        alignItems: 'center',
         marginVertical: 5,
         borderRadius: 10,
     },

@@ -13,7 +13,7 @@ const MultiSelect = ({ value, onSelect, placeholder, icon, options }) => {
         if(value && value.length > 0 && options){
             setSelectedOptions(value);
         }
-    }, [value]);
+    }, []);
 
     const handleOptionSelect = (value) => {
         let selArr = Array.isArray(selectedOptions) ? [...selectedOptions] : [];
