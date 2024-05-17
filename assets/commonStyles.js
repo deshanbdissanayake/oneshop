@@ -57,13 +57,9 @@ const flexGrow1 = { flexGrow: 1 }
 
 const flexRow = { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }
 
-const labelTextStyles = {
-    marginBottom: 5,
-    marginLeft: 2,
-    fontFamily: 'ms-light',
-    fontSize: 12,
-    color: colors.textColorPri,
-}
+const labelTextStyles = { marginBottom: 5, marginLeft: 2, fontFamily: 'ms-light', fontSize: 12, color: colors.textColorPri }
+
+const alertWrapper = { zIndex: 1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }
 
 export { 
     flex1,
@@ -113,5 +109,6 @@ export {
     paddingHorizontal10,
     bottomSheetContainer,
     bottomSheetTitleTextStyles,
-    labelTextStyles
+    labelTextStyles,
+    alertWrapper,
  }

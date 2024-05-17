@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textStyles: {
+    fontFamily: 'ms-light',
     fontWeight: '400',
     fontSize: 18,
     color: colors.textColorPri,

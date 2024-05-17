@@ -47,6 +47,7 @@ function MyTabBar({ state, descriptors, navigation }) {
         } else if (route.name === 'Settings') {
             icon = <FontAwesome5 name="cog" size={24} />;
         }
+        
         return (
             <TouchableOpacity
               key={route.key}

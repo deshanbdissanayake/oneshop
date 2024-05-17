@@ -1,8 +1,8 @@
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View, Modal, BackHandler, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import colors from '../../assets/colors/colors';
 import { AntDesign } from '@expo/vector-icons';
 import MiniButton from './MiniButton';
+import { colors } from '../../assets/colors/colors';
 
 const CustomModal = ({
   title,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     width: 300,
     zIndex: 2,
     alignSelf: 'center',
-    top: '25%',
+    top: '30%',
     overflow: 'scroll',
     maxHeight: 400,
   },
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
   alertWrapper: {
     paddingVertical: 5,
     paddingHorizontal: 15,
+    marginBottom: 10,
   },
   headerWrapper: {
     flexDirection: 'row',
@@ -101,16 +102,17 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   titleStyles: {
+    fontFamily: 'ms-semibold',
     fontSize: 18,
-    color: colors.textDark,
+    color: colors.textColorPri,
   },
   bodyWrapper: {
     marginTop: 5,
-    marginBottom: 5,
   },
   contentStyles: {
+    fontFamily: 'ms-regular',
     fontSize: 14,
-    color: colors.textDark,
+    color: colors.textColorPri,
   },
   footerWrapper: {
     flexDirection: 'row',
@@ -121,25 +123,27 @@ const styles = StyleSheet.create({
   cancelBtnStyles : {
     flex: 1,
     borderBottomLeftRadius: 10,
-    backgroundColor: colors.borderGrayExtraLight,
+    backgroundColor: colors.border,
     justifyContent: 'center',
     alignItems: 'center',
   },
   cancelTextStyles: {
+    fontFamily: 'ms-regular',
     fontSize: 12,
-    color: colors.textDark,
+    color: colors.textColorPri,
     padding: 10,
   },
   okBtnStyles : {
     flex: 1,
     borderBottomRightRadius: 10,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.bgColorSec,
     justifyContent: 'center',
     alignItems: 'center',
   },
   okTextStyles: {
+    fontFamily: 'ms-regular',
     fontSize: 12,
-    color: colors.textLight,
+    color: colors.textColorSec,
     padding: 10,
   },
   loadingWrapper:{
