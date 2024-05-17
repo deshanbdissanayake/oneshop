@@ -72,10 +72,17 @@ const ProductListScreen = () => {
                             <VendorProductCard proData={item} handleCardPress={handleCardPress} />
                         )}
                         showsVerticalScrollIndicator={false}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={refreshing}
+                                onRefresh={onRefresh}   
+                            />
+                        }
                     />
                 ) : (
                     <ScrollView 
                         contentContainerStyle={flex1} 
+                        showsVerticalScrollIndicator={false}
                         refreshControl={
                             <RefreshControl
                                 refreshing={refreshing}

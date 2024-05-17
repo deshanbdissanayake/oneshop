@@ -8,7 +8,7 @@ const VendorProductCard = ({ proData, handleCardPress }) => {
   return (
     <TouchableOpacity style={[styles.cardWrapper, flexRow]} onPress={() => handleCardPress(proData)}>
       <View style={[styles.cardImageWrapper]}>
-        <Image style={styles.cardImageStyles} source={{uri: proData.pro_images.img_1}} />
+        <Image style={styles.cardImageStyles} source={{uri: proData.pro_images[0].img}} />
       </View>
       <View style={styles.cardTextWrapper}>
         <View>

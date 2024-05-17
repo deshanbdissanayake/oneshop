@@ -57,6 +57,14 @@ const flexGrow1 = { flexGrow: 1 }
 
 const flexRow = { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }
 
+const labelTextStyles = {
+    marginBottom: 5,
+    marginLeft: 2,
+    fontFamily: 'ms-light',
+    fontSize: 12,
+    color: colors.textColorPri,
+}
+
 export { 
     flex1,
     flex2,
@@ -104,5 +112,6 @@ export {
     paddingHorizontal5,
     paddingHorizontal10,
     bottomSheetContainer,
-    bottomSheetTitleTextStyles
+    bottomSheetTitleTextStyles,
+    labelTextStyles
  }

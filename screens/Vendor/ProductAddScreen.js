@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import React, { useState } from 'react'
 import { colors } from '../../assets/colors/colors'
 import Header from '../../components/general/Header'
@@ -6,10 +6,13 @@ import { useNavigation } from '@react-navigation/native'
 import Input from '../../components/general/Input'
 import Button from '../../components/general/Button'
 import MultiSelect from '../../components/general/MultiSelect'
-import { container, marginBottom10, textLight14, textRegular14 } from '../../assets/commonStyles'
+import { container, labelTextStyles, marginBottom10, textLight14, textRegular14 } from '../../assets/commonStyles'
 import Switch from '../../components/general/Switch'
 import Select from '../../components/general/Select'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import * as ImagePicker from 'expo-image-picker';
+import MiniButton from '../../components/general/MiniButton'
+import { AntDesign, FontAwesome } from '@expo/vector-icons'
 
 const ProductAddScreen = ({ pro_id = null }) => {
   const navigation = useNavigation();
@@ -24,7 +27,8 @@ const ProductAddScreen = ({ pro_id = null }) => {
 
   }
 
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [imgNum, setImgNum] = useState(1); //for delete images
+  const [showDatePicker, setShowDatePicker] = useState(null);
 
   const [formData, setFormData] = useState({
     pro_name: null,
@@ -43,9 +47,17 @@ const ProductAddScreen = ({ pro_id = null }) => {
     stock_status: 'in'
   });
 
-  const handleDate = (selectedDate) => {
-    setFormData((prevData) => ({ ...prevData, discount: {...prevData.discount, dis_start: selectedDate}}))
-    setShowDatePicker(false)
+  const setDatePicker = () => {
+
+  }
+
+  const handleDate = (selectedDate, type) => {
+    if(type == 'sdate'){
+      setFormData((prevData) => ({ ...prevData, discount: {...prevData.discount, dis_start: selectedDate}}))
+    }else{
+      setFormData((prevData) => ({ ...prevData, discount: {...prevData.discount, dis_end: selectedDate}}))
+    }
+    setShowDatePicker(null)
   }
 
   const handleCategories = (selectedCategories) => {
@@ -69,6 +81,38 @@ const ProductAddScreen = ({ pro_id = null }) => {
     }));
   };
 
+  const handleImageSelect = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
+    });
+
+    if(!result.canceled) {
+      setFormData((prevData) => ({
+        ...prevData,
+        pro_images: [
+          ...prevData.pro_images,
+          { img_id: imgNum, img: result.assets[0].uri, stt: 'active' }
+        ]
+      }));
+
+      setImgNum(prevData => prevData+1);
+    }
+    
+  };
+
+  const handleRemoveImage = (del_img_id) => {
+    setFormData(prevData => ({
+        ...prevData,
+        pro_images: prevData.pro_images.map((e) => 
+            e.img_id === del_img_id ? { ...e, stt: 'delete' } : e
+        )
+    }));
+  };
+
   // Function to format date as yyyy-mm-dd
   const formatDate = (date) => {
     return new Date(date).toISOString().split('T')[0];
@@ -82,8 +126,34 @@ const ProductAddScreen = ({ pro_id = null }) => {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.formStyles}>
+
+        <View style={[marginBottom10]}>
+          <Text style={[labelTextStyles]}>Product Images</Text>
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal>
+                <TouchableOpacity onPress={handleImageSelect} style={styles.addImageWrapper}>
+                    <AntDesign name="plus" size={24} color={colors.primary} />
+                </TouchableOpacity>
+                {formData.pro_images && formData.pro_images.length > 0 && (
+                    formData.pro_images.map((imgData, index) => (
+                        (imgData.stt !== 'delete') && (
+                            <View key={index}>
+                                <Image style={styles.imageStyles} source={{ uri: imgData.img }} />
+                                <View style={styles.imageDelIconStyles} >
+                                    <MiniButton
+                                        func={() => handleRemoveImage(imgData.img_id)}
+                                        content={<FontAwesome name="trash" size={24} color={colors.danger}/>}
+                                        bgColor={colors.white}
+                                    />
+                                </View>
+                            </View>
+                        )
+                    ))
+                )}
+            </ScrollView>
+          </View>
+
           <View style={[marginBottom10]}>
-            <Text style={styles.labelTextStyles}>Product Name</Text>
+            <Text style={[labelTextStyles]}>Product Name</Text>
             <Input
               keyboardType={'default'}
               value={formData.pro_name ?? ''}
@@ -92,7 +162,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
             />
           </View>
           <View style={[marginBottom10]}>
-            <Text style={styles.labelTextStyles}>Product SKU</Text>
+            <Text style={[labelTextStyles]}>Product SKU</Text>
             <Input
               keyboardType={'default'}
               value={formData.pro_sku ?? ''}
@@ -101,7 +171,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
             />
           </View>
           <View style={[marginBottom10]}>
-            <Text style={styles.labelTextStyles}>Product Description</Text>
+            <Text style={[labelTextStyles]}>Product Description</Text>
             <Input
               keyboardType={'default'}
               value={formData.pro_desc ?? ''}
@@ -112,7 +182,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
             />
           </View>
           <View style={[marginBottom10]}>
-            <Text style={styles.labelTextStyles}>Product Price</Text>
+            <Text style={[labelTextStyles]}>Product Price</Text>
             <Input
               keyboardType={'numeric'}
               value={formData.pro_price ?? ''}
@@ -122,7 +192,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
           </View>
 
           <View style={[marginBottom10]}>
-            <Text style={styles.labelTextStyles}>Discount</Text>
+            <Text style={[labelTextStyles]}>Discount</Text>
             <Switch
               switchStatus={formData.discount.dis_status}
               setSwitchStatus={(res) => handleDiscountStatus(res)}
@@ -132,7 +202,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
           {formData.discount.dis_status && (
             <>
               <View style={[marginBottom10]}>
-                <Text style={styles.labelTextStyles}>Discount Price</Text>
+                <Text style={[labelTextStyles]}>Discount Price</Text>
                 <Input
                   keyboardType={'numeric'}
                   value={formData.discount.dis_price ?? ''}
@@ -141,7 +211,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
                 />
               </View>
               <View style={[marginBottom10]}>
-                <Text style={styles.labelTextStyles}>Discount Start</Text>
+                <Text style={[labelTextStyles]}>Discount Start</Text>
                 <Button
                   content={
                     <Text 
@@ -149,13 +219,13 @@ const ProductAddScreen = ({ pro_id = null }) => {
                         {!formData.discount.dis_start ? 'Select Discount Start Date' : formatDate(formData.discount.dis_start)}
                     </Text>
                   }
-                  func={() => setShowDatePicker(true)}
+                  func={() => setShowDatePicker('sdate')}
                   bdr={colors.border}
                   itemPosition={'flex-start'}
                 />
               </View>
               <View style={[marginBottom10]}>
-                <Text style={styles.labelTextStyles}>Discount End</Text>
+                <Text style={[labelTextStyles]}>Discount End</Text>
                 <Button
                   content={
                     <Text 
@@ -163,7 +233,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
                         {!formData.discount.dis_end ? 'Select Discount End Date' : formatDate(formData.discount.dis_end)}
                     </Text>
                   }
-                  func={() => setShowDatePicker(true)}
+                  func={() => setShowDatePicker('edate')}
                   bdr={colors.border}
                   itemPosition={'flex-start'}
                 />
@@ -172,16 +242,20 @@ const ProductAddScreen = ({ pro_id = null }) => {
               {showDatePicker && (
                 <DateTimePicker
                   testID="dateTimePicker"
-                  value={!formData.discount.dis_start ? new Date() : formData.discount.dis_start}
+                  value={
+                    showDatePicker === 'sdate' 
+                      ? (formData.discount.dis_start || new Date()) 
+                      : (formData.discount.dis_end || new Date())
+                  }
                   mode={'date'}
-                  onChange={(event, selectedDate) => handleDate(selectedDate)}
+                  onChange={(event, selectedDate) => handleDate(selectedDate, showDatePicker)}
                 />
               )}
             </>
           )}
 
           <View style={[marginBottom10]}>
-            <Text style={styles.labelTextStyles}>Product Categories</Text>
+            <Text style={[labelTextStyles]}>Product Categories</Text>
             <MultiSelect
               value={formData.pro_cat}
               options={[{value: '1', label: 'IT'}, {value: '2', label: 'Consumer Goods'}, {value: '3', label: 'Beauty'}]}
@@ -190,7 +264,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
           </View>
 
           <View style={[marginBottom10]}>
-            <Text style={styles.labelTextStyles}>Product Tags</Text>
+            <Text style={[labelTextStyles]}>Product Tags</Text>
             <MultiSelect
               value={formData.pro_tags}
               options={[{value: '1', label: 'Tag 1'}, {value: '2', label: 'Tag 2'}, {value: '3', label: 'Tag 3'}]}
@@ -199,7 +273,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
           </View>
 
           <View style={[marginBottom10]}>
-            <Text style={styles.labelTextStyles}>Stock Status</Text>
+            <Text style={[labelTextStyles]}>Stock Status</Text>
             <Select
               value={formData.pro_tags}
               options={[{value: 'in', label: 'Stock In'}, {value: 'out', label: 'Stock Out'}]}
@@ -226,11 +300,28 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'space-between',
   },
-  labelTextStyles: {
-    marginBottom: 5,
-    marginLeft: 2,
-    fontFamily: 'ms-light',
-    fontSize: 12,
-    color: colors.textColorPri,
+  addImageWrapper: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: colors.border,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+  imageStyles: {
+    width: 100,
+    height: 100,
+    resizeMode: 'cover',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: colors.border,
+    marginRight: 10,
+  },
+  imageDelIconStyles: {
+    position: 'absolute',
+    right: 15,
+    top: 5,
   },
 })

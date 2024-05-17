@@ -1,4 +1,4 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, View, Dimensions  } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { colors } from '../../assets/colors/colors'
 import Header from '../../components/general/Header'
@@ -55,12 +55,15 @@ const ProductSingleScreen = () => {
                 handleGoBack={handleGoBack}
             />
             <ScrollView contentContainerStyle={[flexGrow1]} showsVerticalScrollIndicator={false}>
-                <View> 
-                    <Image style={styles.mainImageStyles} source={{uri: proData.pro_images.img_1}} />
-                    <View style={flexRow}>
-                        <Image style={styles.subImageStyles} source={{uri: proData.pro_images.img_2}} />
-                        <Image style={styles.subImageStyles} source={{uri: proData.pro_images.img_3}} />
-                        <Image style={styles.subImageStyles} source={{uri: proData.pro_images.img_4}} />
+                <View > 
+                    <Image style={styles.mainImageStyles} source={{uri: proData.pro_images[0].img}} />
+                    <View style={[styles.imageWrapper]}>
+                        {proData.pro_images.map((imgData, i) => {
+                            if (i !== 0) {
+                            return <Image key={i} style={styles.subImageStyles} source={{ uri: imgData.img }} />;
+                            }
+                            return null;
+                        })}
                     </View>
                 </View>
                 <View style={styles.productDetailsWrapper}>
@@ -118,11 +121,17 @@ const styles = StyleSheet.create({
         marginBottom: 7,
         borderRadius: 10,
     },
+    imageWrapper: {
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+    },
     subImageStyles: {
-        width: '32%',
+        width: Dimensions.get('window').width/3 - 20,
         height: 100,
         resizeMode: 'cover',
         borderRadius: 10,
+        marginBottom: 10,
+        marginRight: 10,
     },
     productDetailsWrapper: {
         marginTop: 15,
