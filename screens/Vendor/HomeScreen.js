@@ -6,7 +6,7 @@ import BottomTabHeader from '../../components/app/BottomTabHeader'
 import { useAppContext } from '../../context/AppContext'
 import OrderSummary from './Home/OrderSummary'
 import ProductSummary from './Home/ProductSummary'
-import { getOrderSummary } from '../../assets/data/dash'
+import { getOrderSummary, getProductSummary } from '../../assets/data/dash'
 import { useFocusEffect } from '@react-navigation/native'
 import { alertWrapper } from '../../assets/commonStyles'
 import CustomModal from '../../components/general/CustomModal'
@@ -19,6 +19,7 @@ const HomeScreen = () => {
   
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState(null);
+  const [products, setProducts] = useState(null);
 
   const orderSummaryFilterOptions = [
       {label: 'Today', value: 'today'},
@@ -36,8 +37,10 @@ const HomeScreen = () => {
 
   const getOrdersData = async () => {
       try {
-          let res = await getOrderSummary()
-          setOrders(res);
+          let ords = await getOrderSummary()
+          let pros = await getProductSummary()
+          setOrders(ords);
+          setProducts(pros);
       } catch (error) {
           console.error('Error at OrderSummary.js -> getOrdersData')
       } finally {
@@ -64,7 +67,7 @@ const HomeScreen = () => {
       )}
       <ScrollView contentContainerStyle={styles.contentContainer} showsVerticalScrollIndicator={false}>
           <OrderSummary orders={orders} filter={orderSummaryFilter} setShowOrderSummaryFilter={setShowOrderSummaryFilter} />
-          <ProductSummary/>
+          <ProductSummary products={products} />
       </ScrollView>
 
       {showOrderSummaryFilter && (
@@ -79,7 +82,7 @@ const HomeScreen = () => {
                       />
                   }
                   okButtonText={'Cancel'}
-                  pressOk={()=>setShowOrderSummaryFilter(false)}
+                  pressOk={() => setShowOrderSummaryFilter(false)}
                   pressClose={() => setShowOrderSummaryFilter(false)}
               />
           </View>

@@ -52,14 +52,31 @@ const flex2 = { flex: 2 }
 const flex3 = { flex: 3 } 
 const flex4 = { flex: 4 } 
 const flex5 = { flex: 5 } 
-
 const flexGrow1 = { flexGrow: 1 }
-
 const flexRow = { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }
+const flexWrapper = { flexDirection: 'row', flexWrap: 'wrap' }
 
 const labelTextStyles = { marginBottom: 5, marginLeft: 2, fontFamily: 'ms-light', fontSize: 12, color: colors.textColorPri }
 
 const alertWrapper = { zIndex: 1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }
+
+const btnColorSet = {
+    set_1: [
+        '#240750',
+        '#006769',
+        '#344C64',
+        '#A91D3A',
+        '#7469B6',
+        '#32012F',
+        '#153448',
+    ],
+    set_2: [
+        '#074173',
+        '#A34343',
+        '#102C57',
+        '#803D3B',
+    ],
+};
 
 export { 
     flex1,
@@ -69,6 +86,7 @@ export {
     flex5,
     flexGrow1,
     flexRow,
+    flexWrapper,
     container,
     textLight10,
     textLight12,
@@ -111,4 +129,5 @@ export {
     bottomSheetTitleTextStyles,
     labelTextStyles,
     alertWrapper,
+    btnColorSet
  }

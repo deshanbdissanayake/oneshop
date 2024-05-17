@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { colors } from '../../assets/colors/colors'
 
 const SummaryCard = ({name, value, bgColor}) => {
   return (
@@ -19,16 +20,17 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         paddingHorizontal: 10,
         borderRadius: 5,
-        flex: 1,
+        width: Dimensions.get('screen').width/2 - 30,
     },
     cardNameStyles: {
-        color: colors.textLight,
         fontSize: 12,
-        fontWeight: '300',
+        fontFamily: 'ms-regular',
+        color: colors.white,
+        marginBottom: 5,
     },
     cardValueStyles: {
-        color: colors.textLight,
         fontSize: 14,
-        fontWeight: '400',
+        fontFamily: 'ms-semibold',
+        color: colors.white,
     },
 })

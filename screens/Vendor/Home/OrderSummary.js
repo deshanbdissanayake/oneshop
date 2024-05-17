@@ -5,6 +5,8 @@ import { colors } from '../../../assets/colors/colors';
 import NoData from '../../../components/general/NoData';
 import MiniButton from '../../../components/general/MiniButton';
 import { Feather } from '@expo/vector-icons';
+import SummaryCard from '../../../components/app/SummaryCard';
+import { btnColorSet, flexWrapper, marginTop10 } from '../../../assets/commonStyles';
 
 const OrderSummary = ({ orders, filter, setShowOrderSummaryFilter }) => {
     return (
@@ -18,13 +20,25 @@ const OrderSummary = ({ orders, filter, setShowOrderSummaryFilter }) => {
                     />
                 }
             />
-            <View style={styles.cardsWrapper}>
-                { orders && orders.length > 0 ? (
-                    ''
-                ) : (
+            
+            { orders[filter] && orders[filter].length > 0 ? (
+                <View style={[flexWrapper]}>
+                    {orders[filter].map((item, i)=>{
+                        return (
+                            <SummaryCard
+                                name={item.label}
+                                value={item.value}
+                                bgColor={btnColorSet.set_1[i]}
+                                key={i}
+                            />
+                        )
+                    })}
+                </View>
+            ) : (
+                <View style={[marginTop10]}>
                     <NoData text={'No Orders Yet!'} />
-                ) }
-            </View>
+                </View>
+            ) }
         </View>
     )
 }
@@ -39,8 +53,5 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 10,
         marginBottom: 15,
-    },
-    cardsWrapper: {
-        marginTop: 15,
     },
 })
