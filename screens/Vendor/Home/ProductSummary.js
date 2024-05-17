@@ -15,10 +15,10 @@ const ProductSummary = ({ products }) => {
                       {products.map((item, i)=>{
                           return (
                               <SummaryCard
-                                  name={item.label}
-                                  value={item.value}
-                                  bgColor={btnColorSet.set_2[i]}
-                                  key={i}
+                                key={i}
+                                name={item.label}
+                                value={item.value}
+                                bgColor={btnColorSet.set_2[i]}
                               />
                           )
                       })}

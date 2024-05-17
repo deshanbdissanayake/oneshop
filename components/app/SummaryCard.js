@@ -1,13 +1,13 @@
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { colors } from '../../assets/colors/colors'
 
-const SummaryCard = ({name, value, bgColor}) => {
+const SummaryCard = ({name, value, bgColor, func = null}) => {
   return (
-    <View style={[styles.cardWrapper, {backgroundColor: bgColor}]}>
+    <TouchableOpacity onPress={func} style={[styles.cardWrapper, {backgroundColor: bgColor}]}>
         <Text style={styles.cardNameStyles}>{name}</Text>
         <Text style={styles.cardValueStyles}>{value}</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 

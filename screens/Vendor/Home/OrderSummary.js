@@ -26,10 +26,10 @@ const OrderSummary = ({ orders, filter, setShowOrderSummaryFilter }) => {
                     {orders[filter].map((item, i)=>{
                         return (
                             <SummaryCard
+                                key={i}
                                 name={item.label}
                                 value={item.value}
                                 bgColor={btnColorSet.set_1[i]}
-                                key={i}
                             />
                         )
                     })}
