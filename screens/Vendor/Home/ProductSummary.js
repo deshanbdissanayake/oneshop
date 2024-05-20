@@ -18,6 +18,7 @@ const ProductSummary = ({ products }) => {
                                 key={i}
                                 name={item.label}
                                 value={item.value}
+                                filter={item.label == 'In Stock' ? 'in' : 'out'}
                                 bgColor={btnColorSet.set_2[i]}
                                 type={'product'}
                               />

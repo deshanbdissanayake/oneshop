@@ -1,10 +1,10 @@
 import { FlatList, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Header from '../../components/general/Header'
 import { colors } from '../../assets/colors/colors'
 import MiniButton from '../../components/general/MiniButton'
 import { Entypo, Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native'
 import { getProductsByUserId } from '../../assets/data/products'
 import LoadingScreen from '../LoadingScreen'
 import VendorProductCard from '../../components/app/VendorProductCard'
@@ -14,6 +14,9 @@ import Input from '../../components/general/Input'
 
 const ProductListScreen = () => {
     const navigation = useNavigation();
+    const route = useRoute();
+
+    const params = route.params;
 
     const handleAddProduct = () => {
         navigation.navigate('Product Add Screen')
@@ -40,9 +43,13 @@ const ProductListScreen = () => {
         }
     }
 
-    useEffect(()=>{
-        getProductsFunc();
-    },[])
+    useFocusEffect(
+        useCallback(() => {
+            getProductsFunc();
+
+            setFilter(params.filter)
+        }, [params])
+    );
 
     useEffect(() => {
         if (originalProducts && originalProducts.length > 0) {
