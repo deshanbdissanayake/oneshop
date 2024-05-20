@@ -14,13 +14,14 @@ const textSemiBold14 = { fontSize: 14, fontFamily: 'ms-semibold', color: colors.
 
 const bottomSheetContainer = { flexGrow: 1, backgroundColor: colors.bgColor, paddingHorizontal: 20, paddingVertical: 10 }
 const bottomSheetTitleTextStyles = { fontSize: 18, fontFamily: 'ms-semibold', color: colors.textColorPri, textAlign: 'center', marginBottom: 10 }
+const bottomSheetContentWrapper = { marginTop: 5, paddingHorizontal: 5 }
 
 const textAlignRight = { textAlign: 'right' }
 const textAlignLeft = { textAlign: 'left' }
 const textAlignCenter = { textAlign: 'center' }
 const textAlignJustify = { textAlign: 'justify' }
 
-
+const marginLeft2 = { marginLeft: 2 }
 const marginTop5 = { marginTop: 5 }
 const marginTop10 = { marginTop: 10 }
 const marginRight5 = { marginRight: 5 }
@@ -31,6 +32,7 @@ const marginLeft5 = { marginLeft: 5 }
 const marginLeft10 = { marginLeft: 10 }
 const marginVertical5 = { marginVertical: 5 }
 const marginVertical10 = { marginVertical: 10 }
+const marginHorizontal2 = { marginHorizontal: 2 }
 const marginHorizontal5 = { marginHorizontal: 5 }
 const marginHorizontal10 = { marginHorizontal: 10 }
 
@@ -59,6 +61,10 @@ const flexWrapper = { flexDirection: 'row', flexWrap: 'wrap' }
 const labelTextStyles = { marginBottom: 5, marginLeft: 2, fontFamily: 'ms-light', fontSize: 12, color: colors.textColorPri }
 
 const alertWrapper = { zIndex: 1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }
+
+const w100 = {width: '100%'}
+const w50 = {width: '50%'}
+const w25 = {width: '25%'}
 
 const btnColorSet = {
     set_1: [
@@ -101,6 +107,7 @@ export {
     textAlignLeft,
     textAlignCenter,
     textAlignJustify,
+    marginLeft2,
     marginTop5,
     marginTop10,
     marginRight5,
@@ -111,6 +118,7 @@ export {
     marginLeft10,
     marginVertical5,
     marginVertical10,
+    marginHorizontal2,
     marginHorizontal5,
     marginHorizontal10,
     paddingTop5,
@@ -127,7 +135,11 @@ export {
     paddingHorizontal10,
     bottomSheetContainer,
     bottomSheetTitleTextStyles,
+    bottomSheetContentWrapper,
     labelTextStyles,
     alertWrapper,
-    btnColorSet
+    btnColorSet,
+    w100,
+    w50,
+    w25
  }

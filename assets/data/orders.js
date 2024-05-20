@@ -25,7 +25,7 @@ const getOrdersByUserId = async () => {
         {
             ord_id: '57',
             ord_num: '10000057',
-            ord_date: '2024-05-14',
+            ord_date: '2024-05-20',
             ord_total: '4200.00',
             ord_status: 'delivering', // pending/processing/delivering
             cus_name: 'Melani',
