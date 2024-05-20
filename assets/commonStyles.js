@@ -21,6 +21,8 @@ const textAlignLeft = { textAlign: 'left' }
 const textAlignCenter = { textAlign: 'center' }
 const textAlignJustify = { textAlign: 'justify' }
 
+const justifyCenter = { justifyContent: 'center', alignItems: 'center', textAlign: 'center' }
+
 const marginLeft2 = { marginLeft: 2 }
 const marginTop5 = { marginTop: 5 }
 const marginTop10 = { marginTop: 10 }
@@ -107,6 +109,7 @@ export {
     textAlignLeft,
     textAlignCenter,
     textAlignJustify,
+    justifyCenter,
     marginLeft2,
     marginTop5,
     marginTop10,

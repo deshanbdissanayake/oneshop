@@ -1,10 +1,11 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import { colors } from '../../assets/colors/colors'
 
-const MiniButton = ({bgColor, func, content, paddingStt = true}) => {
+const MiniButton = ({bgColor, func, content, paddingStt = true, inputStyles = false}) => {
   return (
     <TouchableOpacity onPress={func}>
-        <View style={[styles.miniButtonStyles, paddingStt ? styles.paddingStyles : null, {backgroundColor: bgColor}]}>
+        <View style={[styles.miniButtonStyles, inputStyles ? styles.borderStyles : paddingStt ? styles.paddingStyles : null, {backgroundColor: bgColor}]}>
             {content}
         </View>
     </TouchableOpacity>
@@ -18,11 +19,17 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       borderRadius: 50,
-      backgroundColor: 'red'
     },
     paddingStyles: {
       padding: 5,
       width: 40,
       height: 40,
+    },
+    borderStyles: {
+      borderWidth: 1, 
+      borderColor: colors.border, 
+      borderRadius: 10, 
+      height: 50,
+      width: 50,
     },
 })
