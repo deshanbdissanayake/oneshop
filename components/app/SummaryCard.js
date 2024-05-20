@@ -3,7 +3,7 @@ import React from 'react'
 import { colors } from '../../assets/colors/colors'
 import { useNavigation } from '@react-navigation/native'
 
-const SummaryCard = ({name, value, bgColor, filter}) => {
+const SummaryCard = ({name, value, bgColor, filter, type}) => {
     const navigation = useNavigation();
 
     let pay_stts = ['all'];
@@ -24,10 +24,17 @@ const SummaryCard = ({name, value, bgColor, filter}) => {
     }
     
     const handleCardClick = () => {
-      navigation.navigate('Orders', { 
-        screen: 'Order List Screen', 
-        params: { ord_stts, pay_stts, dates: [filter] }
-      });
+      if(type == 'order'){
+        navigation.navigate('Orders', { 
+          screen: 'Order List Screen', 
+          params: { ord_stts, pay_stts, dates: [filter] }
+        });
+      }else{
+        navigation.navigate('Products', { 
+          screen: 'Product List Screen', 
+          params: { filter }
+        });
+      }
     };
     
     return (

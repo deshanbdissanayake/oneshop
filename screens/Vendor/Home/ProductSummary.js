@@ -19,6 +19,7 @@ const ProductSummary = ({ products }) => {
                                 name={item.label}
                                 value={item.value}
                                 bgColor={btnColorSet.set_2[i]}
+                                type={'product'}
                               />
                           )
                       })}

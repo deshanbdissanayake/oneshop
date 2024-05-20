@@ -4,7 +4,6 @@ import { colors } from '../../assets/colors/colors'
 import { flexRow, textLight12, textRegular12, textSemiBold14 } from '../../assets/commonStyles'
 
 const VendorProductCard = ({ proData, handleCardPress }) => {
-  console.log(proData.pro_image)
   return (
     <TouchableOpacity style={[styles.cardWrapper, flexRow]} onPress={() => handleCardPress(proData)}>
       <View style={[styles.cardImageWrapper]}>

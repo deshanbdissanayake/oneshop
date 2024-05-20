@@ -11,37 +11,36 @@ const Input = ({keyboardType, value, onChangeText, placeholder, secureTextEntry,
         }
     };
     
-  
     return (
-    <Pressable onPress={handleInputWrapperClick}>
-        <View 
-            style={[
-                styles.inputWrapper, 
-                textArea ? { height: 120, alignItems: 'flex-start' } : {alignItems:'center'},
-                disabled && { backgroundColor: colors.disabled} ,
-                {borderColor: borderColor}
-            ]}
-        >
-            {icon}
-            <TextInput
-                keyboardType={keyboardType}
-                value={value}
-                onChangeText={onChangeText}
-                placeholder={placeholder}
-                secureTextEntry={secureTextEntry}
+        <Pressable onPress={handleInputWrapperClick}>
+            <View 
                 style={[
-                    styles.inputTextStyles, 
-                    disabled && { color: colors.textColorPri, fontFamily: 'ms-light' } 
+                    styles.inputWrapper, 
+                    textArea ? { height: 120, alignItems: 'flex-start' } : {alignItems:'center'},
+                    disabled && { backgroundColor: colors.disabled} ,
+                    {borderColor: borderColor}
                 ]}
-                editable={editable}
-                multiline={multiline}
-                maxLength={maxLength}
-                ref={inputRef}
-                autoCapitalize={capitalize}
-            />
-        </View>
-    </Pressable>
-  );
+            >
+                {icon}
+                <TextInput
+                    keyboardType={keyboardType}
+                    value={value}
+                    onChangeText={onChangeText}
+                    placeholder={placeholder}
+                    secureTextEntry={secureTextEntry}
+                    style={[
+                        styles.inputTextStyles, 
+                        disabled && { color: colors.textColorPri, fontFamily: 'ms-light' } 
+                    ]}
+                    editable={editable}
+                    multiline={multiline}
+                    maxLength={maxLength}
+                    ref={inputRef}
+                    autoCapitalize={capitalize}
+                />
+            </View>
+        </Pressable>
+    );
 };
 
 export default Input;

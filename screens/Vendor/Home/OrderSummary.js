@@ -34,6 +34,7 @@ const OrderSummary = ({ orders, filter, setShowOrderSummaryFilter }) => {
                                 value={item.value}
                                 filter={filter}
                                 bgColor={btnColorSet.set_1[i]}
+                                type={'order'}
                             />
                         )
                     })}

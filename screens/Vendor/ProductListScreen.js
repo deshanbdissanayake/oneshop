@@ -1,5 +1,5 @@
 import { FlatList, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/general/Header'
 import { colors } from '../../assets/colors/colors'
 import MiniButton from '../../components/general/MiniButton'
@@ -9,7 +9,7 @@ import { getProductsByUserId } from '../../assets/data/products'
 import LoadingScreen from '../LoadingScreen'
 import VendorProductCard from '../../components/app/VendorProductCard'
 import NoData from '../../components/general/NoData'
-import { bottomSheetContainer, bottomSheetContentWrapper, bottomSheetTitleTextStyles, container, flex1, flexRow, justifyCenter, marginBottom10, marginBottom5, marginHorizontal2, marginLeft10, marginLeft5, marginVertical10, marginVertical5, paddingBottom10, paddingBottom5, paddingVertical10, textRegular12, textRegular14 } from '../../assets/commonStyles'
+import { container, flex1, flexRow, justifyCenter, marginBottom10, marginHorizontal2, marginLeft10, marginVertical5, paddingBottom5, paddingVertical10, textRegular12 } from '../../assets/commonStyles'
 import Input from '../../components/general/Input'
 
 const ProductListScreen = () => {
@@ -21,7 +21,8 @@ const ProductListScreen = () => {
 
     const [refreshing, setRefreshing] = useState(false);
     const [loading, setLoading] = useState(true);
-    const [products, getProducts] = useState(null);
+    const [originalProducts, setOriginalProducts] = useState(null);
+    const [products, setProducts] = useState(null);
 
     const [showFilter, setShowFilter] = useState(false);
     const [searchText, setSearchText] = useState('');
@@ -30,7 +31,7 @@ const ProductListScreen = () => {
     const getProductsFunc = async () => {
         try {
             let res = await getProductsByUserId();
-            getProducts(res);
+            setOriginalProducts(res);
         } catch (error) {
             console.error('error at ProductListScreen->getProducts: ', error)
         } finally {
@@ -42,6 +43,27 @@ const ProductListScreen = () => {
     useEffect(()=>{
         getProductsFunc();
     },[])
+
+    useEffect(() => {
+        if (originalProducts && originalProducts.length > 0) {
+            let filteredProducts = originalProducts.filter(pro => 
+                filter === 'all' || filter === pro.stock_status
+            );
+    
+            const lowerCaseSearchText = searchText.toLowerCase();
+    
+            let searchedProducts = filteredProducts.filter(pro => 
+                pro.pro_name.toLowerCase().includes(lowerCaseSearchText) || 
+                pro.pro_sku.toLowerCase().includes(lowerCaseSearchText)
+            );
+    
+            setProducts(searchedProducts);
+        } else {
+            setProducts([]);
+        }
+    }, [originalProducts, filter, searchText]);
+    
+    
 
     const handleCardPress = async (proData) => {
         navigation.navigate('Product Single Screen', { proData } )
@@ -108,13 +130,7 @@ const ProductListScreen = () => {
                                     keyboardType={'default'}
                                     value={searchText}
                                     onChangeText={(text) => setSearchText(text)}
-                                    placeholder={'Enter Product Name/ Code'}
-                                />
-                            </View>
-                            <View style={[marginLeft10]}>
-                                <MiniButton
-                                    content={<Ionicons name="search" size={24} color={colors.textColorPri} />}
-                                    inputStyles={true}
+                                    placeholder={'Search Product Name / Code'}
                                 />
                             </View>
                         </View>
