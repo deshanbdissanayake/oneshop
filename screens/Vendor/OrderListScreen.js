@@ -20,8 +20,6 @@ const OrderListScreen = () => {
 
   const params = route.params;
 
-  console.log('params', params)
-
   const bottomSheetRef = useRef(null);
   const snapPoints = useMemo(() => [1, '55%', '75%'], []);
 
@@ -35,8 +33,6 @@ const OrderListScreen = () => {
     pay_stts: ['all'],
     dates: ['all'],
   });
-  
-  console.log('filter', filters)
 
   const getOrders = async () => {
     try {
@@ -50,7 +46,13 @@ const OrderListScreen = () => {
   useFocusEffect(
     useCallback(() => {
       getOrders();
-    }, [])
+
+      setFilters({
+        ord_stts: params.ord_stts,
+        pay_stts: params.pay_stts,
+        dates: params.dates,
+      })
+    }, [params])
   );
   
   useEffect(() => {
@@ -191,8 +193,8 @@ const OrderListScreen = () => {
                   <View style={marginBottom10}>
                     <Text style={[textLight12, marginLeft2, marginBottom5]}>Select Order Status</Text>
                     <Select
-                      value={filters.ord_stt}
-                      onSelect={(text)=> setFilters(prevData => ({...prevData, ord_stt:text}))}
+                      value={filters.ord_stts[0]}
+                      onSelect={(text)=> setFilters(prevData => ({...prevData, ord_stts:[text]}))}
                       options={[
                         {label: 'All', value: 'all'},
                         {label: 'Pending', value: 'pending'},
@@ -205,8 +207,8 @@ const OrderListScreen = () => {
                   <View style={marginBottom10}>
                     <Text style={[textLight12, marginLeft2, marginBottom5]}>Select Payment Status</Text>
                     <Select
-                      value={filters.pay_stt}
-                      onSelect={(text)=> setFilters(prevData => ({...prevData, pay_stt:text}))}
+                      value={filters.pay_stts[0]}
+                      onSelect={(text)=> setFilters(prevData => ({...prevData, pay_stts:[text]}))}
                       options={[
                         {label: 'All', value: 'all'},
                         {label: 'Pending', value: 'pending'},
@@ -218,8 +220,8 @@ const OrderListScreen = () => {
                   <View style={marginBottom10}>
                     <Text style={[textLight12, marginLeft2, marginBottom5]}>Select Date Filter</Text>
                     <Select
-                      value={filters.date}
-                      onSelect={(text)=> setFilters(prevData => ({...prevData, date:text}))}
+                      value={filters.dates[0]}
+                      onSelect={(text)=> setFilters(prevData => ({...prevData, dates:[text]}))}
                       options={[
                         {label: 'All', value: 'all'},
                         {label: 'Today', value: 'today'},
