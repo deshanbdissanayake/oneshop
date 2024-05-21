@@ -86,6 +86,8 @@ const btnColorSet = {
     ],
 };
 
+const hidePwStyles = { position: 'absolute', right: 15, top: 12, }
+
 export { 
     flex1,
     flex2,
@@ -144,5 +146,6 @@ export {
     btnColorSet,
     w100,
     w50,
-    w25
+    w25,
+    hidePwStyles
  }

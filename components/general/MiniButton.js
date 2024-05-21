@@ -2,10 +2,10 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { colors } from '../../assets/colors/colors'
 
-const MiniButton = ({bgColor, func, content, paddingStt = true, inputStyles = false}) => {
+const MiniButton = ({bgColor, func, content, paddingStt = true, btnStyles = false}) => {
   return (
     <TouchableOpacity onPress={func}>
-        <View style={[styles.miniButtonStyles, inputStyles ? styles.borderStyles : paddingStt ? styles.paddingStyles : null, {backgroundColor: bgColor}]}>
+        <View style={[styles.miniButtonStyles, btnStyles ? styles.borderStyles : paddingStt ? styles.paddingStyles : null, {backgroundColor: bgColor}]}>
             {content}
         </View>
     </TouchableOpacity>

@@ -112,6 +112,12 @@ const reqNewOtp = async () => {
 }
 //-------------------------------------------------------------------------------------------------------------
 const signIn = async (username, password) => {
+    //remove this later===================================================
+
+    return true; 
+
+    //====================================================================
+
     // Store data in AsyncStorage
     await AsyncStorage.setItem("emailToVerify", username);
     await AsyncStorage.setItem("temporaryPassword", password);
