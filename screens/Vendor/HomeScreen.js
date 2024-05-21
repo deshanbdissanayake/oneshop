@@ -6,7 +6,7 @@ import BottomTabHeader from '../../components/app/BottomTabHeader'
 import { useAppContext } from '../../context/AppContext'
 import OrderSummary from './Home/OrderSummary'
 import ProductSummary from './Home/ProductSummary'
-import { getOrderSummary, getProductSummary } from '../../assets/data/dash'
+import { getIncomeData, getOrderSummary, getProductSummary } from '../../assets/data/dash'
 import { useFocusEffect } from '@react-navigation/native'
 import { alertWrapper } from '../../assets/commonStyles'
 import CustomModal from '../../components/general/CustomModal'
@@ -22,6 +22,7 @@ const HomeScreen = () => {
   const [orders, setOrders] = useState(null);
   const [products, setProducts] = useState(null);
   const [userdata, setUserdata] = useState(null)
+  const [incomeData, setIncomeData] = useState(null)
 
   const orderSummaryFilterOptions = [
       {label: 'Today', value: 'today'},
@@ -41,8 +42,11 @@ const HomeScreen = () => {
       try {
           let ords = await getOrderSummary()
           let pros = await getProductSummary()
+          let incm = await getIncomeData();
+
           setOrders(ords);
           setProducts(pros);
+          setIncomeData(incm);
 
           let asyncData = await AsyncStorage.getItem('userdata');
           let userdata = JSON.parse(asyncData);
@@ -74,7 +78,7 @@ const HomeScreen = () => {
       <ScrollView contentContainerStyle={styles.contentContainer} showsVerticalScrollIndicator={false}>
           <OrderSummary orders={orders} filter={orderSummaryFilter} setShowOrderSummaryFilter={setShowOrderSummaryFilter} />
           <ProductSummary products={products} />
-          <IncomeChart incomeData={[]} />
+          <IncomeChart incomeData={incomeData} />
       </ScrollView>
 
       {showOrderSummaryFilter && (

@@ -38,4 +38,23 @@ const getProductSummary = async () => {
     return data;
 }
 
-export { getOrderSummary, getProductSummary }
+const getIncomeData = async () => {
+    let data=[ 
+        {label: 'Jan', value: 50000}, 
+        {label: 'Feb', value: 80000}, 
+        {label: 'Mar', value: 90000}, 
+        {label: 'Apr', value: 10000},
+        {label: 'May', value: 10000},
+        {label: 'Jun', value: 10000},
+        {label: 'Jul', value: 20000},
+        {label: 'Aug', value: 20000},
+        {label: 'Sep', value: 50000},
+        {label: 'Oct', value: 50000},
+        {label: 'Nov', value: 100000},
+        {label: 'Dec', value: 100000},
+    ]
+
+    return { data: data, maxValue: 100000 };
+}
+
+export { getOrderSummary, getProductSummary, getIncomeData }
