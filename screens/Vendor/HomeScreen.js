@@ -12,14 +12,16 @@ import { alertWrapper } from '../../assets/commonStyles'
 import CustomModal from '../../components/general/CustomModal'
 import Select from '../../components/general/Select'
 import LoadingScreen from '../LoadingScreen'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import IncomeChart from './Home/IncomeChart'
 
 const HomeScreen = () => {
   const { navType } = useAppContext();
 
-  
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState(null);
   const [products, setProducts] = useState(null);
+  const [userdata, setUserdata] = useState(null)
 
   const orderSummaryFilterOptions = [
       {label: 'Today', value: 'today'},
@@ -35,14 +37,18 @@ const HomeScreen = () => {
     setShowOrderSummaryFilter(false);
   }
 
-  const getOrdersData = async () => {
+  const getData = async () => {
       try {
           let ords = await getOrderSummary()
           let pros = await getProductSummary()
           setOrders(ords);
           setProducts(pros);
+
+          let asyncData = await AsyncStorage.getItem('userdata');
+          let userdata = JSON.parse(asyncData);
+          setUserdata(userdata);
       } catch (error) {
-          console.error('Error at OrderSummary.js -> getOrdersData')
+          console.error('Error at OrderSummary.js -> getData')
       } finally {
           setLoading(false);
       }
@@ -50,7 +56,7 @@ const HomeScreen = () => {
 
   useFocusEffect(
       useCallback(() => {
-          getOrdersData()
+        getData()
       },[])
   )
 
@@ -63,11 +69,12 @@ const HomeScreen = () => {
       {navType == 'drawer' ? (
         <DrawerHeader text={'Home'} />
       ) : (
-        <BottomTabHeader text={'Home'} />
+        <BottomTabHeader text={`Welcome ${userdata.username} !`} />
       )}
       <ScrollView contentContainerStyle={styles.contentContainer} showsVerticalScrollIndicator={false}>
           <OrderSummary orders={orders} filter={orderSummaryFilter} setShowOrderSummaryFilter={setShowOrderSummaryFilter} />
           <ProductSummary products={products} />
+          <IncomeChart incomeData={[]} />
       </ScrollView>
 
       {showOrderSummaryFilter && (

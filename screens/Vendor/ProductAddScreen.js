@@ -1,8 +1,8 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { colors } from '../../assets/colors/colors'
 import Header from '../../components/general/Header'
-import { useNavigation } from '@react-navigation/native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
 import Input from '../../components/general/Input'
 import Button from '../../components/general/Button'
 import MultiSelect from '../../components/general/MultiSelect'
@@ -13,6 +13,9 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import MiniButton from '../../components/general/MiniButton'
 import { AntDesign, FontAwesome } from '@expo/vector-icons'
+import { getAllCategories } from '../../assets/data/categories'
+import { getAllTags } from '../../assets/data/tags'
+import LoadingScreen from '../LoadingScreen'
 
 const ProductAddScreen = ({ pro_id = null }) => {
   const navigation = useNavigation();
@@ -27,8 +30,41 @@ const ProductAddScreen = ({ pro_id = null }) => {
 
   }
 
+  const [loading, setLoading] = useState(true)
   const [imgNum, setImgNum] = useState(1); //for delete images
   const [showDatePicker, setShowDatePicker] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState([]);
+
+  const getData = async () => {
+    try {
+      let cats = await getAllCategories();
+      let tgs = await getAllTags();
+
+      const catArr = cats.map(cat => ({
+        value: cat.cat_id,
+        label: cat.cat_name
+      }));
+  
+      const tagsArr = tgs.map(tag => ({
+        value: tag.tag_id,
+        label: tag.tag_name
+      }));
+
+      setCategories(catArr)
+      setTags(tagsArr)
+    } catch (error) {
+      console.error('error at ProductAddScreen.js -> getData')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useFocusEffect(
+    useCallback(()=>{
+      getData();
+    },[])
+  )
 
   const [formData, setFormData] = useState({
     pro_name: null,
@@ -117,6 +153,10 @@ const ProductAddScreen = ({ pro_id = null }) => {
   const formatDate = (date) => {
     return new Date(date).toISOString().split('T')[0];
   };
+
+  if(loading){
+    return <LoadingScreen/>
+  }
 
   return (
     <View style={container}>
@@ -258,7 +298,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
             <Text style={[labelTextStyles]}>Product Categories</Text>
             <MultiSelect
               value={formData.pro_cat}
-              options={[{value: '1', label: 'IT'}, {value: '2', label: 'Consumer Goods'}, {value: '3', label: 'Beauty'}]}
+              options={categories}
               onSelect={handleCategories}
             />
           </View>
@@ -267,7 +307,7 @@ const ProductAddScreen = ({ pro_id = null }) => {
             <Text style={[labelTextStyles]}>Product Tags</Text>
             <MultiSelect
               value={formData.pro_tags}
-              options={[{value: '1', label: 'Tag 1'}, {value: '2', label: 'Tag 2'}, {value: '3', label: 'Tag 3'}]}
+              options={tags}
               onSelect={handleTags}
             />
           </View>

@@ -38,7 +38,7 @@ const SummaryCard = ({name, value, bgColor, filter, type}) => {
     };
     
     return (
-        <TouchableOpacity onPress={handleCardClick} style={[styles.cardWrapper, {backgroundColor: bgColor}]}>
+        <TouchableOpacity onPress={handleCardClick} style={[styles.cardWrapper]}>
             <Text style={styles.cardNameStyles}>{name}</Text>
             <Text style={styles.cardValueStyles}>{value}</Text>
         </TouchableOpacity>
@@ -55,16 +55,17 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: 5,
         width: Dimensions.get('screen').width/2 - 30,
+        backgroundColor: colors.white,
     },
     cardNameStyles: {
         fontSize: 12,
         fontFamily: 'ms-regular',
-        color: colors.white,
+        color: colors.textColorPri,
         marginBottom: 5,
     },
     cardValueStyles: {
         fontSize: 14,
         fontFamily: 'ms-semibold',
-        color: colors.white,
+        color: colors.textColorPri,
     },
 })

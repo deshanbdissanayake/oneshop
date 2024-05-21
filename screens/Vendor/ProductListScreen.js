@@ -24,8 +24,8 @@ const ProductListScreen = () => {
 
     const [refreshing, setRefreshing] = useState(false);
     const [loading, setLoading] = useState(true);
-    const [originalProducts, setOriginalProducts] = useState(null);
-    const [products, setProducts] = useState(null);
+    const [originalProducts, setOriginalProducts] = useState([]);
+    const [products, setProducts] = useState([]);
 
     const [showFilter, setShowFilter] = useState(false);
     const [searchText, setSearchText] = useState('');
@@ -47,7 +47,9 @@ const ProductListScreen = () => {
         useCallback(() => {
             getProductsFunc();
 
-            setFilter(params.filter)
+            if(params){
+                setFilter(params.filter)
+            }
         }, [params])
     );
 
@@ -84,7 +86,6 @@ const ProductListScreen = () => {
     const handleFilterClick = () => {
         setShowFilter((prevData) => !prevData)
     }
-
     
     const FilterButton = ({ label, value }) => (
         <TouchableOpacity 

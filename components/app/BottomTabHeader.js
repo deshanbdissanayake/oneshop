@@ -1,19 +1,16 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet, StatusBar, TouchableOpacity } from 'react-native';
+import { Text, View, Image, StyleSheet, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { DrawerActions } from '@react-navigation/native';
 
 import { colors } from '../../assets/colors/colors';
 import MiniButton from '../general/MiniButton';
+import { textRegular14 } from '../../assets/commonStyles';
 
 const BottomTabHeader = ({text = null}) => {
   const navigation = useNavigation();
 
-  const openDrawer = () => {
-    //console.log('drawer')
-    navigation.dispatch(DrawerActions.openDrawer());
-  };
+  
 
   const handleNotificationClick = () => {
     navigation.navigate('Notification Screen')
@@ -24,13 +21,10 @@ const BottomTabHeader = ({text = null}) => {
       <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
       <View style={styles.headerContainer}>
         <View style={styles.leftContainer}>
-          {/* Logo */}
-          {/*<Image source={require('../../assets/images/app/logo.png')} style={styles.logo} />*/}
-          {/* Name */}
-          <Text style={styles.name}>{text ? text : 'Home'}</Text>
+          <Image source={require('../../assets/images/logo_full_white.png')} style={styles.logoStyles} />
+          <Text style={[textRegular14, {color: colors.textColorSec}]}>{text ? text : 'Home'}</Text>
         </View>
         <View style={styles.rightContainer}>
-          {/* User icon */}
           <MiniButton
             content={<Ionicons name="notifications" size={24} color={colors.textColorSec} />}
             func={handleNotificationClick}
@@ -53,17 +47,13 @@ const styles = StyleSheet.create({
   leftContainer: {
     flex: 1,
     alignItems: 'flex-start',
+    marginLeft: 5,
   },
-  logo: {
-    width: 30,
-    height: 30,
+  logoStyles: {
+    width: 150,
+    height: 40,
     marginRight: 8,
-  },
-  name: {
-    fontSize: 24,
-    color: colors.textColorSec,
-    fontFamily: 'ms-bold',
-    textAlign: 'center',
+    resizeMode: 'contain',
   },
   rightContainer: {
     flex: 1,

@@ -47,11 +47,13 @@ const OrderListScreen = () => {
     useCallback(() => {
       getOrders();
 
-      setFilters({
-        ord_stts: params.ord_stts,
-        pay_stts: params.pay_stts,
-        dates: params.dates,
-      })
+      if(params){
+        setFilters({
+          ord_stts: params.ord_stts,
+          pay_stts: params.pay_stts,
+          dates: params.dates,
+        })
+      }
     }, [params])
   );
   

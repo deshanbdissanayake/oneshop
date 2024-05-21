@@ -24,6 +24,7 @@ const WelcomeScreen = () => {
 
   useEffect(()=>{
     getData();
+
   },[])
   
   const getData = async () => {
@@ -38,7 +39,6 @@ const WelcomeScreen = () => {
       setLoading(false)
     }
   }
-  
 
   const handleLoginClick = async () => {
 
@@ -51,11 +51,12 @@ const WelcomeScreen = () => {
     try {
       let res = await signIn(loginData.username, loginData.password);
       if(res){
-        await AsyncStorage.setItem('userdata', { username, login_stt: true})
+        let userdata = JSON.stringify({ username: loginData.username, login_stt: true});
+        await AsyncStorage.setItem('userdata', userdata)
         setIsLoggedIn(true);
       }
     } catch (error) {
-      console.error('error at WelcomeScreen.js -> handleLoginClick')
+      console.error('error at WelcomeScreen.js -> handleLoginClick', error)
     } finally {
       setBtnLoading(false)
     }

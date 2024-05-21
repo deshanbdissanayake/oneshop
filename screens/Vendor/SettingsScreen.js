@@ -1,10 +1,12 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { colors } from '../../assets/colors/colors'
 import Header from '../../components/general/Header'
 import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { container } from '../../assets/commonStyles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAppContext } from '../../context/AppContext';
 
 const RowItem = ({icon, text, func}) => {
   return (
@@ -19,6 +21,8 @@ const SettingsScreen = () => {
 
   const navigation = useNavigation();
 
+  const { setIsLoggedIn } = useAppContext();
+
   const handleGoBack = () => {
     navigation.goBack();
   }
@@ -28,7 +32,15 @@ const SettingsScreen = () => {
   }
 
   const handleLogoutClick = () => {
-    console.log('logout')
+    Alert.alert('Confirm', 'Are you sure you want to logout?', [
+      {text: 'Cancel', onPress: ()=>null, style: 'cancel'},
+      {text: 'Logout', onPress: ()=>logoutFunc()}
+    ])
+  }
+
+  const logoutFunc = () => {
+    AsyncStorage.clear();
+    setIsLoggedIn(false)
   }
 
   return (
