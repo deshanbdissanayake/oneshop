@@ -22,6 +22,18 @@ const PasswordChange = () => {
         navigation.goBack();
     }
 
+    const handleResetClick = () => {
+        resetFunc()
+    }
+
+    const resetFunc = () => {
+        setPassword({
+            old_pw: '',
+            new_pw: '',
+            new_conf_pw: ''
+        })
+    }
+
     const handleUpdateClick = async () => {
         setBtnLoading(false)
         if(!password.old_pw || !password.new_pw || !password.new_conf_pw){
@@ -90,6 +102,16 @@ const PasswordChange = () => {
                     </View>
                 </View>
                 <View style={w100}>
+                    <View style={marginBottom5}>
+                        <Button
+                            bgColor={colors.bgColor}
+                            bdr={colors.textColorPri}
+                            content={<Text style={[textRegular14, {color: colors.textColorPri}]}>Reset</Text>}
+                            func={handleResetClick}
+                            loading={btnLoading}
+                            loaderIconColor={colors.textColorPri}
+                        />
+                    </View>
                     <View style={marginBottom5}>
                         <Button
                             bgColor={colors.bgColorSec}
