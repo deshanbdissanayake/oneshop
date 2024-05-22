@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "oneshop",
-    "slug": "snack-8c5e11a9-64fc-4108-bbb5-72c2ca373aa1",
+    "slug": "oneshop",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,7 +21,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.desh1234.snack8c5e11a964fc4108bbb572c2ca373aa1"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -39,8 +40,9 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "ffacb043-c1fa-475f-bcc9-506dbe5ae2ac"
+        "projectId": "f8124844-7ac1-499f-8b8a-d4edc0684327"
       }
-    }
+    },
+    "owner": "introps"
   }
 }
