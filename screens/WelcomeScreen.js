@@ -90,6 +90,7 @@ const WelcomeScreen = () => {
               onChangeText={(text) => setLoginData((prevData) => ({...prevData, username: text}))}
               placeholder={'Enter your username'}
               center={ true }
+              capitalize={'none'}
             />
           </View>
           <View style={[marginBottom10, marginTop5]}>
@@ -100,6 +101,7 @@ const WelcomeScreen = () => {
               placeholder={'Enter your password'}
               secureTextEntry={hidePw}
               center={ true }
+              capitalize={'none'}
             />
             <View style={hidePwStyles}>
               <MiniButton

@@ -22,34 +22,48 @@ const textAlignCenter = { textAlign: 'center' }
 const textAlignJustify = { textAlign: 'justify' }
 
 const justifyCenter = { justifyContent: 'center', alignItems: 'center', textAlign: 'center' }
+const justifyBetween = { justifyContent: 'space-between', alignItems: 'center'}
+const alignCenter = { alignItems: 'center' }
 
 const marginLeft2 = { marginLeft: 2 }
 const marginTop5 = { marginTop: 5 }
 const marginTop10 = { marginTop: 10 }
+const marginTop15 = { marginTop: 15 }
 const marginRight5 = { marginRight: 5 }
 const marginRight10 = { marginRight: 10 }
+const marginRight15 = { marginRight: 15 }
 const marginBottom5 = { marginBottom: 5 }
 const marginBottom10 = { marginBottom: 10 }
+const marginBottom15 = { marginBottom: 15 }
 const marginLeft5 = { marginLeft: 5 }
 const marginLeft10 = { marginLeft: 10 }
+const marginLeft15 = { marginLeft: 15 }
 const marginVertical5 = { marginVertical: 5 }
 const marginVertical10 = { marginVertical: 10 }
+const marginVertical15 = { marginVertical: 15 }
 const marginHorizontal2 = { marginHorizontal: 2 }
 const marginHorizontal5 = { marginHorizontal: 5 }
 const marginHorizontal10 = { marginHorizontal: 10 }
+const marginHorizontal15 = { marginHorizontal: 15 }
 
 const paddingTop5 = { paddingTop: 5 }
 const paddingTop10 = { paddingTop: 10 }
+const paddingTop15 = { paddingTop: 15 }
 const paddingRight5 = { paddingRight: 5 }
 const paddingRight10 = { paddingRight: 10 }
+const paddingRight15 = { paddingRight: 15 }
 const paddingBottom5 = { paddingBottom: 5 }
 const paddingBottom10 = { paddingBottom: 10 }
+const paddingBottom15 = { paddingBottom: 15 }
 const paddingLeft5 = { paddingLeft: 5 }
 const paddingLeft10 = { paddingLeft: 10 }
+const paddingLeft15 = { paddingLeft: 15 }
 const paddingVertical5 = { paddingVertical: 5 }
 const paddingVertical10 = { paddingVertical: 10 }
+const paddingVertical15 = { paddingVertical: 15 }
 const paddingHorizontal5 = { paddingHorizontal: 5 }
 const paddingHorizontal10 = { paddingHorizontal: 10 }
+const paddingHorizontal15 = { paddingHorizontal: 15 }
 
 const flex1 = { flex: 1 } 
 const flex2 = { flex: 2 } 
@@ -88,6 +102,16 @@ const btnColorSet = {
 
 const hidePwStyles = { position: 'absolute', right: 15, top: 12, }
 
+const borderTop = { borderTopWidth: 1, borderTopColor: colors.border }
+const borderBottom = { borderBottomWidth: 1, borderBottomColor: colors.border }
+const borderLeft = { borderLeftWidth: 1, borderLeftColor: colors.border }
+const borderRight = { borderRightWidth: 1, borderRightColor: colors.border }
+const borderVertical = { borderTopWidth: 1, borderTopColor: colors.border, borderBottomWidth: 1, borderBottomColor: colors.border }
+const borderHorizontal = { borderLeftWidth: 1, borderLeftColor: colors.border, borderRightWidth: 1, borderRightColor: colors.border }
+const borderRound5 = { borderWidth: 1, borderColor: colors.border, borderRadius: 5 }
+const borderRound10 = { borderWidth: 1, borderColor: colors.border, borderRadius: 10 }
+const borderRound50 = { borderWidth: 1, borderColor: colors.border, borderRadius: 50 }
+
 export { 
     flex1,
     flex2,
@@ -112,32 +136,46 @@ export {
     textAlignCenter,
     textAlignJustify,
     justifyCenter,
+    justifyBetween,
+    alignCenter,
     marginLeft2,
     marginTop5,
     marginTop10,
+    marginTop15,
     marginRight5,
     marginRight10,
+    marginRight15,
     marginBottom5,
     marginBottom10,
+    marginBottom15,
     marginLeft5,
     marginLeft10,
+    marginLeft15,
     marginVertical5,
     marginVertical10,
+    marginVertical15,
     marginHorizontal2,
     marginHorizontal5,
     marginHorizontal10,
+    marginHorizontal15,
     paddingTop5,
     paddingTop10,
+    paddingTop15,
     paddingRight5,
     paddingRight10,
+    paddingRight15,
     paddingBottom5,
     paddingBottom10,
+    paddingBottom15,
     paddingLeft5,
     paddingLeft10,
+    paddingLeft15,
     paddingVertical5,
     paddingVertical10,
+    paddingVertical15,
     paddingHorizontal5,
     paddingHorizontal10,
+    paddingHorizontal15,
     bottomSheetContainer,
     bottomSheetTitleTextStyles,
     bottomSheetContentWrapper,
@@ -147,5 +185,14 @@ export {
     w100,
     w50,
     w25,
-    hidePwStyles
+    hidePwStyles, 
+    borderTop,
+    borderBottom,
+    borderLeft,
+    borderRight,
+    borderVertical,
+    borderHorizontal,
+    borderRound5,
+    borderRound10,
+    borderRound50,
  }

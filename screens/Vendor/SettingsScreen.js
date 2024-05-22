@@ -28,7 +28,7 @@ const SettingsScreen = () => {
   }
 
   const handleProfileClick = () => {
-    navigation.navigate('My Profile Screen')
+    navigation.navigate('Profile Screen')
   }
 
   const handleLogoutClick = () => {

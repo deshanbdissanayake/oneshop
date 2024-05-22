@@ -38,6 +38,7 @@ const Input = ({keyboardType, value, onChangeText, placeholder, secureTextEntry,
                     maxLength={maxLength}
                     ref={inputRef}
                     autoCapitalize={capitalize}
+                    autoCorrect={false}
                 />
             </View>
         </Pressable>
