@@ -36,6 +36,12 @@
           "//": "Disables the microphone permission",
           "microphonePermission": false
         }
+      ],
+      [
+        "expo-dev-launcher",
+        {
+          "launchMode": "most-recent"
+        }
       ]
     ],
     "extra": {

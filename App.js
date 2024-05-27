@@ -1,5 +1,6 @@
+import * as DevClient from 'expo-dev-client';
 import React, { useState, useEffect } from 'react';
-import { Keyboard, StyleSheet, SafeAreaView, StatusBar, Platform, Alert } from 'react-native';
+import { Keyboard, StyleSheet, StatusBar, Platform, Alert } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -12,6 +13,7 @@ import SplashScreen from './screens/SplashScreen';
 import LoginNav from './navigation/LoginNav';
 import BottomNav from './navigation/BottomNav';
 import DrawerNav from './navigation/DrawerNav';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Stack = createStackNavigator();
 
